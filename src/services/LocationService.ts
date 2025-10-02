@@ -53,8 +53,11 @@ export class LocationService {
           reject(new Error(`Geolocation error: ${error.message}`));
         },
         {
-          enableHighAccuracy: true,
-          timeout: 10000,
+          // Use low accuracy for faster response on mobile
+          enableHighAccuracy: false,
+          // Reduce timeout for faster fallback
+          timeout: 5000,
+          // Cache for 10 minutes
           maximumAge: 600000
         }
       );
@@ -63,10 +66,16 @@ export class LocationService {
 
   private async getLocationInfo(coordinates: Coordinates): Promise<LocationData> {
     try {
-      // Try OpenStreetMap Nominatim - better for Indonesia
+      // Add timeout to reverse geocoding for faster fallback
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 3000) // 3 second timeout
+
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=18&addressdetails=1&accept-language=id`
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coordinates.latitude}&lon=${coordinates.longitude}&zoom=10&addressdetails=1&accept-language=id`,
+        { signal: controller.signal }
       );
+
+      clearTimeout(timeoutId)
 
       if (!response.ok) {
         throw new Error('Failed to fetch location information');

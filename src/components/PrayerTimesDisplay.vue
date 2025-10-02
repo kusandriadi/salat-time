@@ -89,6 +89,7 @@ const {
 const currentTime = ref('')
 const currentDate = ref('')
 let timeInterval: number | null = null
+const isHydrated = ref(false)
 
 // Main 5 prayer times and all prayers
 const mainPrayers = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']
@@ -158,14 +159,34 @@ const upcomingPrayer = computed(() => {
 })
 
 onMounted(async () => {
-  await initializeLocation()
   updateTime()
-  timeInterval = window.setInterval(updateTime, 1000)
+
+  // Defer heavy operations until after first paint
+  const defer = window.requestIdleCallback || ((cb: any) => setTimeout(cb, 1))
+  defer(() => {
+    isHydrated.value = true
+
+    // Use requestAnimationFrame for better performance
+    let lastUpdate = 0
+    const updateLoop = (timestamp: number) => {
+      if (timestamp - lastUpdate >= 1000) {
+        updateTime()
+        lastUpdate = timestamp
+      }
+      if (timeInterval) {
+        requestAnimationFrame(updateLoop)
+      }
+    }
+
+    timeInterval = 1 // Just a flag
+    requestAnimationFrame(updateLoop)
+
+    // Initialize location without blocking UI
+    initializeLocation()
+  })
 })
 
 onUnmounted(() => {
-  if (timeInterval) {
-    clearInterval(timeInterval)
-  }
+  timeInterval = null
 })
 </script>
