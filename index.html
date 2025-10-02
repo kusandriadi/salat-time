@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Preconnect to APIs -->
-    <link rel="preconnect" href="https://api.myquran.com" crossorigin>
+    <!-- Preconnect to API -->
     <link rel="preconnect" href="https://api.aladhan.com" crossorigin>
 
     <!-- SEO Meta Tags -->
@@ -13,54 +12,183 @@
     <meta name="description" content="Jadwal waktu sholat real-time dan akurat berdasarkan lokasi Anda. Lihat jam sholat Subuh, Dzuhur, Ashar, Maghrib, dan Isya dengan countdown otomatis. Prayer times Indonesia.">
     <meta name="keywords" content="jadwal sholat, waktu sholat, jam sholat, prayer time, solat time, waktu solat, jam solat, sholat indonesia, jadwal shalat, waktu shalat, jadwal solat, prayer times, islamic prayer times, waktu adzan, jadwal adzan">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <style>
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 50%, #ecfeff 100%);
+            padding: 1rem;
         }
-        .animate-spin {
+
+        .container { max-width: 48rem; margin: 0 auto; }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #d1fae5;
+            margin-bottom: 1.5rem;
+        }
+
+        .header { text-align: center; }
+
+        #date { color: #64748b; font-size: 0.75rem; font-weight: 500; margin-bottom: 0.25rem; }
+        #clock { color: #1e293b; font-size: 2rem; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
+        #location { margin-top: 0.5rem; color: #047857; font-weight: 600; font-size: 0.875rem; }
+
+        .countdown {
+            background: #059669;
+            color: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .countdown-text { font-weight: 500; font-size: 0.875rem; }
+        .loading { text-align: center; padding: 3rem 0; }
+
+        .spinner {
+            display: inline-block;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 4px solid #d1fae5;
+            border-top-color: #059669;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loading-text { color: #64748b; margin-top: 1rem; font-weight: 500; font-size: 0.875rem; }
+
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .error-text { color: #b91c1c; margin-bottom: 1rem; font-weight: 500; font-size: 0.875rem; }
+
+        .btn-retry {
+            background: #dc2626;
+            color: white;
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.75rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .btn-retry:hover { background: #b91c1c; }
+
+        .prayer-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .prayer-item {
+            background: white;
+            border: 1px solid #d1fae5;
+            border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .prayer-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .prayer-name { font-weight: 600; font-size: 1rem; }
+        .prayer-name.main { color: #334155; }
+        .prayer-name.additional { color: #64748b; }
+
+        .prayer-time {
+            font-family: 'Courier New', monospace;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #047857;
+            letter-spacing: 0.05em;
+        }
+
+        .footer { margin-top: 1.5rem; text-align: center; color: #64748b; font-size: 0.75rem; }
+        .hidden { display: none !important; }
+
+        /* Tablet >= 640px */
+        @media (min-width: 640px) {
+            body { padding: 1.5rem; }
+            .card { padding: 1.5rem; border-radius: 1.5rem; margin-bottom: 2rem; }
+            #date { font-size: 0.875rem; }
+            #clock { font-size: 2.5rem; }
+            #location { margin-top: 0.75rem; font-size: 1rem; }
+            .countdown { padding: 1.25rem; border-radius: 1.5rem; margin-bottom: 1.5rem; }
+            .countdown-text { font-size: 1rem; }
+            .spinner { width: 3rem; height: 3rem; }
+            .loading-text { font-size: 1rem; }
+            .error { padding: 1.5rem; border-radius: 1.5rem; }
+            .error-text { font-size: 1rem; }
+            .btn-retry { padding: 0.75rem 1.5rem; border-radius: 1rem; font-size: 1rem; }
+            .prayer-list { gap: 0.75rem; }
+            .prayer-item { padding: 1.25rem; border-radius: 1.5rem; }
+            .prayer-name { font-size: 1.125rem; }
+            .prayer-time { font-size: 1.5rem; }
+            .footer { font-size: 0.875rem; }
+        }
+
+        /* Desktop >= 768px */
+        @media (min-width: 768px) {
+            body { padding: 2rem; }
+            #clock { font-size: 3rem; }
+            .prayer-name { font-size: 1.25rem; }
+            .prayer-time { font-size: 1.75rem; }
+        }
+
+        /* Large Desktop >= 1024px */
+        @media (min-width: 1024px) {
+            #clock { font-size: 3.5rem; }
+            .prayer-time { font-size: 2rem; }
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 md:p-8">
+<body>
+    <div class="container">
 
         <!-- Header with Clock -->
-        <div class="text-center mb-6 sm:mb-8">
-            <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-emerald-100">
-                <div id="date" class="text-slate-600 text-xs sm:text-sm font-medium mb-1"></div>
-                <div id="clock" class="text-slate-800 text-3xl sm:text-4xl md:text-5xl font-bold font-mono tracking-wide">--:--:--</div>
-                <div id="location" class="mt-2 sm:mt-3 text-emerald-700 font-semibold text-sm sm:text-base"></div>
-            </div>
+        <div class="card header">
+            <div id="date"></div>
+            <div id="clock">--:--:--</div>
+            <div id="location"></div>
         </div>
 
         <!-- Countdown Alert -->
-        <div id="countdown" class="mb-4 sm:mb-6 bg-emerald-600 text-white rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-lg text-center hidden">
-            <div id="countdown-text" class="text-sm sm:text-base font-medium"></div>
+        <div id="countdown" class="countdown hidden">
+            <div id="countdown-text" class="countdown-text"></div>
         </div>
 
         <!-- Loading -->
-        <div id="loading" class="text-center py-12">
-            <div class="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-4 border-emerald-200 border-t-emerald-600"></div>
-            <div class="text-slate-600 mt-4 font-medium text-sm sm:text-base">Memuat jadwal sholat...</div>
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">Memuat jadwal sholat...</div>
         </div>
 
         <!-- Error -->
-        <div id="error" class="bg-red-50 border border-red-200 p-4 sm:p-6 rounded-xl sm:rounded-2xl text-center shadow-lg hidden">
-            <div id="error-text" class="text-red-700 mb-4 font-medium text-sm sm:text-base"></div>
-            <button onclick="location.reload()" class="bg-red-600 hover:bg-red-700 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-semibold transition-colors text-sm sm:text-base">
-                Coba Lagi
-            </button>
+        <div id="error" class="error hidden">
+            <div id="error-text" class="error-text"></div>
+            <button onclick="location.reload()" class="btn-retry">Coba Lagi</button>
         </div>
 
         <!-- Prayer Times -->
-        <div id="prayer-times" class="space-y-2 sm:space-y-3 hidden"></div>
+        <div id="prayer-times" class="prayer-list hidden"></div>
 
         <!-- Footer -->
-        <div class="mt-6 sm:mt-8 text-center text-slate-500 text-xs sm:text-sm">
+        <div class="footer">
             <p>Jadwal sholat diperbarui secara otomatis</p>
         </div>
     </div>
@@ -180,41 +308,37 @@
             const year = date.getFullYear();
 
             try {
-                // Try MyQuran API first
-                const url1 = `https://api.myquran.com/v2/sholat/jadwal/${year}/${month}/${day}/${lat}/${lng}`;
-                const res1 = await fetch(url1);
-                const data1 = await res1.json();
+                const dateStr = `${day}-${month}-${year}`;
+                const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20`;
 
-                if (data1.status && data1.data && data1.data.jadwal) {
-                    const j = data1.data.jadwal;
-                    return {
-                        imsak: j.imsak,
-                        fajr: j.subuh,
-                        syuruq: j.terbit,
-                        dhuhr: j.dzuhur,
-                        asr: j.ashar,
-                        maghrib: j.maghrib,
-                        isha: j.isha
-                    };
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 10000);
+
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(timeout);
+
+                if (!response.ok) {
+                    throw new Error('Layanan jadwal sholat sedang tidak tersedia. Silakan coba lagi nanti.');
                 }
-            } catch (e) {}
 
-            // Fallback to Aladhan
-            const dateStr = `${day}-${month}-${year}`;
-            const url2 = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20`;
-            const res2 = await fetch(url2);
-            const data2 = await res2.json();
-            const t = data2.data.timings;
+                const data = await response.json();
+                const t = data.data.timings;
 
-            return {
-                imsak: t.Imsak.substring(0, 5),
-                fajr: t.Fajr.substring(0, 5),
-                syuruq: t.Sunrise.substring(0, 5),
-                dhuhr: t.Dhuhr.substring(0, 5),
-                asr: t.Asr.substring(0, 5),
-                maghrib: t.Maghrib.substring(0, 5),
-                isha: t.Isha.substring(0, 5)
-            };
+                return {
+                    imsak: t.Imsak.substring(0, 5),
+                    fajr: t.Fajr.substring(0, 5),
+                    syuruq: t.Sunrise.substring(0, 5),
+                    dhuhr: t.Dhuhr.substring(0, 5),
+                    asr: t.Asr.substring(0, 5),
+                    maghrib: t.Maghrib.substring(0, 5),
+                    isha: t.Isha.substring(0, 5)
+                };
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    throw new Error('Koneksi timeout. Periksa koneksi internet Anda.');
+                }
+                throw new Error(error.message || 'Layanan jadwal sholat sedang tidak tersedia. Silakan coba lagi nanti.');
+            }
         }
 
         // Display prayer times
@@ -225,16 +349,14 @@
             allPrayers.forEach(prayer => {
                 const isMain = mainPrayers.includes(prayer);
                 const div = document.createElement('div');
-                div.className = 'bg-white border border-emerald-100 rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-md hover:shadow-lg transition-shadow';
+                div.className = 'prayer-item';
                 div.innerHTML = `
-                    <div class="flex items-center justify-between gap-3 sm:gap-4">
-                        <span class="font-semibold text-base sm:text-lg md:text-xl ${isMain ? 'text-slate-700' : 'text-slate-500'}">
-                            ${prayerNames[prayer]}
-                        </span>
-                        <span class="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-emerald-700 tracking-wide">
-                            ${times[prayer]}
-                        </span>
-                    </div>
+                    <span class="prayer-name ${isMain ? 'main' : 'additional'}">
+                        ${prayerNames[prayer]}
+                    </span>
+                    <span class="prayer-time">
+                        ${times[prayer]}
+                    </span>
                 `;
                 container.appendChild(div);
             });
