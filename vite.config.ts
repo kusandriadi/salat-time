@@ -21,17 +21,13 @@ export default defineConfig({
         }
       }
     },
-    // Compress and minify
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
+    // Compress and minify (esbuild is faster and built-in)
+    minify: 'esbuild',
     // Optimize CSS
     cssCodeSplit: true,
     // Set chunk size warning limit
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 1000,
+    // Target modern browsers for smaller bundle
+    target: 'esnext'
   }
 })
