@@ -19,37 +19,44 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 50%, #ecfeff 100%);
-            padding: 1rem;
+            padding: 0.3rem;
+            overflow: hidden;
         }
 
-        .container { max-width: 48rem; margin: 0 auto; }
+        .container {
+            max-width: 48rem;
+            width: 100%;
+            margin: 0 auto;
+        }
 
         .card {
             background: white;
-            border-radius: 1rem;
-            padding: 1rem;
+            border-radius: 0.4rem;
+            padding: 0.3rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid #d1fae5;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.25rem;
+            flex-shrink: 0;
         }
 
         .header { text-align: center; }
 
-        #date { color: #64748b; font-size: 0.75rem; font-weight: 500; margin-bottom: 0.25rem; }
-        #clock { color: #1e293b; font-size: 2rem; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
-        #location { margin-top: 0.5rem; color: #047857; font-weight: 600; font-size: 0.875rem; }
+        #date { color: #64748b; font-size: 0.5rem; font-weight: 500; margin-bottom: 0.05rem; }
+        #clock { color: #1e293b; font-size: 1.1rem; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
+        #location { margin-top: 0.15rem; color: #047857; font-weight: 600; font-size: 0.6rem; }
 
         .countdown {
             background: #059669;
             color: white;
-            border-radius: 1rem;
-            padding: 1rem;
+            border-radius: 0.4rem;
+            padding: 0.3rem;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.25rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
-        .countdown-text { font-weight: 500; font-size: 0.875rem; }
+        .countdown-text { font-weight: 500; font-size: 0.6rem; }
         .loading { text-align: center; padding: 3rem 0; }
 
         .spinner {
@@ -91,34 +98,91 @@
 
         .btn-retry:hover { background: #b91c1c; }
 
-        .prayer-list { display: flex; flex-direction: column; gap: 0.5rem; }
+        .prayer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
 
         .prayer-item {
-            background: white;
-            border: 1px solid #d1fae5;
-            border-radius: 1rem;
-            padding: 1rem;
+            background: linear-gradient(135deg, #4d7c6f 0%, #2d5a4d 100%);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.7rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: box-shadow 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .prayer-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .prayer-name { font-weight: 600; font-size: 1rem; }
-        .prayer-name.main { color: #334155; }
-        .prayer-name.additional { color: #64748b; }
+        .prayer-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
 
-        .prayer-time {
-            font-family: 'Courier New', monospace;
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #047857;
+        .prayer-item.active {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 4px 12px rgba(16,185,129,0.5);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .prayer-name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .prayer-icon {
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+
+        .prayer-name {
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: white;
+            text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
-        .footer { margin-top: 1.5rem; text-align: center; color: #64748b; font-size: 0.75rem; }
+        .prayer-time {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 0.05em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer {
+            margin-top: 0.15rem;
+            padding: 0.15rem 0;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.5rem;
+            flex-shrink: 0;
+        }
         .hidden { display: none !important; }
 
         /* Tablet >= 640px */
@@ -167,11 +231,6 @@
             <div id="location"></div>
         </div>
 
-        <!-- Countdown Alert -->
-        <div id="countdown" class="countdown hidden">
-            <div id="countdown-text" class="countdown-text"></div>
-        </div>
-
         <!-- Loading -->
         <div id="loading" class="loading">
             <div class="spinner"></div>
@@ -186,11 +245,6 @@
 
         <!-- Prayer Times -->
         <div id="prayer-times" class="prayer-list hidden"></div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>Jadwal sholat diperbarui secara otomatis</p>
-        </div>
     </div>
 
     <script>
@@ -198,11 +252,22 @@
         const prayerNames = {
             imsak: 'Imsak',
             fajr: 'Subuh',
-            syuruq: 'Syuruq',
+            syuruq: 'Terbit',
             dhuhr: 'Dzuhur',
             asr: 'Ashar',
             maghrib: 'Maghrib',
             isha: 'Isya'
+        };
+
+        // Prayer icons
+        const prayerIcons = {
+            imsak: '🌙',
+            fajr: '☀️',
+            syuruq: '🌅',
+            dhuhr: '☀️',
+            asr: '☀️',
+            maghrib: '🌆',
+            isha: '🌙'
         };
 
         const mainPrayers = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
@@ -237,6 +302,8 @@
 
             const now = new Date();
             const currentMinutes = now.getHours() * 60 + now.getMinutes();
+            const countdownEl = document.getElementById('countdown');
+            const wasHidden = countdownEl.classList.contains('hidden');
 
             for (const prayer of mainPrayers) {
                 const timeStr = prayerTimesData[prayer];
@@ -247,14 +314,14 @@
                 if (diff < 0) diff += 24 * 60;
 
                 if (diff > 0 && diff <= 30) {
-                    document.getElementById('countdown').classList.remove('hidden');
+                    countdownEl.classList.remove('hidden');
                     document.getElementById('countdown-text').textContent =
                         `${diff} menit lagi masuk waktu shalat ${prayerNames[prayer]}`;
                     return;
                 }
             }
 
-            document.getElementById('countdown').classList.add('hidden');
+            countdownEl.classList.add('hidden');
         }
 
         // Get location
@@ -346,14 +413,36 @@
             const container = document.getElementById('prayer-times');
             container.innerHTML = '';
 
+            const now = new Date();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
             allPrayers.forEach(prayer => {
                 const isMain = mainPrayers.includes(prayer);
                 const div = document.createElement('div');
                 div.className = 'prayer-item';
+
+                // Find next prayer for active state
+                const timeStr = times[prayer];
+                const [hours, minutes] = timeStr.split(':').map(Number);
+                const prayerMinutes = hours * 60 + minutes;
+                let nextPrayerMinutes = Infinity;
+                for (const p of mainPrayers) {
+                    const [h, m] = times[p].split(':').map(Number);
+                    const pm = h * 60 + m;
+                    if (pm > currentMinutes && pm < nextPrayerMinutes) {
+                        nextPrayerMinutes = pm;
+                    }
+                }
+
+                if (prayerMinutes === nextPrayerMinutes) {
+                    div.classList.add('active');
+                }
+
                 div.innerHTML = `
-                    <span class="prayer-name ${isMain ? 'main' : 'additional'}">
-                        ${prayerNames[prayer]}
-                    </span>
+                    <div class="prayer-name-wrapper">
+                        <span class="prayer-icon">${prayerIcons[prayer]}</span>
+                        <span class="prayer-name">${prayerNames[prayer]}</span>
+                    </div>
                     <span class="prayer-time">
                         ${times[prayer]}
                     </span>
