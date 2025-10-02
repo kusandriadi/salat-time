@@ -13,56 +13,95 @@
     <meta name="keywords" content="jadwal sholat, waktu sholat, jam sholat, prayer time, solat time, waktu solat, jam solat, sholat indonesia, jadwal shalat, waktu shalat, jadwal solat, prayer times, islamic prayer times, waktu adzan, jadwal adzan">
 
     <style>
+        :root {
+            color-scheme: light;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
             min-height: 100vh;
-            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdfa 50%, #ecfeff 100%);
-            padding: 0.3rem;
-            overflow: hidden;
+            background: linear-gradient(135deg, #ecfdf5 0%, #f1fdf8 45%, #e0f2fe 100%);
+            padding: clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 5vw, 2rem);
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .container {
-            max-width: 48rem;
-            width: 100%;
+            width: min(100%, 32rem);
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.85rem, 2.5vw, 1.5rem);
         }
 
         .card {
-            background: white;
-            border-radius: 0.4rem;
-            padding: 0.3rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid #d1fae5;
-            margin-bottom: 0.25rem;
-            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: clamp(0.9rem, 2.5vw, 1.4rem);
+            padding: clamp(1.1rem, 3.5vw, 1.7rem);
+            box-shadow: 0 16px 32px rgba(15, 118, 110, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
-        .header { text-align: center; }
+        .header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
 
-        #date { color: #64748b; font-size: 0.5rem; font-weight: 500; margin-bottom: 0.05rem; }
-        #clock { color: #1e293b; font-size: 1.1rem; font-weight: bold; font-family: 'Courier New', monospace; letter-spacing: 0.05em; }
-        #location { margin-top: 0.15rem; color: #047857; font-weight: 600; font-size: 0.6rem; }
+        #date {
+            color: #0f172a;
+            font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+            font-weight: 500;
+        }
+
+        #clock {
+            color: #022c22;
+            font-size: clamp(2.6rem, 9vw, 3.2rem);
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.05em;
+        }
+
+        #location {
+            color: #047857;
+            font-weight: 600;
+            font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+        }
 
         .countdown {
-            background: #059669;
-            color: white;
-            border-radius: 0.4rem;
-            padding: 0.3rem;
+            background: linear-gradient(135deg, #047857, #10b981);
+            color: #f0fdfa;
+            border-radius: clamp(0.9rem, 2.5vw, 1.4rem);
+            padding: clamp(1.1rem, 3.5vw, 1.6rem);
             text-align: center;
-            margin-bottom: 0.25rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            flex-shrink: 0;
+            box-shadow: 0 12px 24px rgba(15, 118, 110, 0.2);
         }
 
-        .countdown-text { font-weight: 500; font-size: 0.6rem; }
-        .loading { text-align: center; padding: 3rem 0; }
+        .countdown-text {
+            font-weight: 500;
+            font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+            letter-spacing: 0.03em;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            color: #0f172a;
+        }
 
         .spinner {
             display: inline-block;
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 3rem;
+            height: 3rem;
             border: 4px solid #d1fae5;
             border-top-color: #059669;
             border-radius: 50%;
@@ -71,153 +110,199 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        .loading-text { color: #64748b; margin-top: 1rem; font-weight: 500; font-size: 0.875rem; }
+        .loading-text {
+            color: #64748b;
+            font-weight: 500;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
 
         .error {
             background: #fef2f2;
             border: 1px solid #fecaca;
-            border-radius: 1rem;
-            padding: 1rem;
+            border-radius: clamp(0.9rem, 2.5vw, 1.3rem);
+            padding: clamp(1.25rem, 3.5vw, 1.75rem);
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 12px 20px rgba(248, 113, 113, 0.15);
         }
 
-        .error-text { color: #b91c1c; margin-bottom: 1rem; font-weight: 500; font-size: 0.875rem; }
+        .error-text {
+            color: #b91c1c;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+        }
 
         .btn-retry {
             background: #dc2626;
             color: white;
-            padding: 0.625rem 1.25rem;
-            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
             border: none;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
-            font-size: 0.875rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+            font-size: clamp(0.95rem, 2.8vw, 1.05rem);
         }
 
-        .btn-retry:hover { background: #b91c1c; }
+        .btn-retry:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+        }
+
+        .btn-retry:active {
+            transform: translateY(0);
+        }
 
         .prayer-list {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: clamp(0.8rem, 2.5vw, 1.35rem);
         }
 
         .prayer-item {
-            background: linear-gradient(135deg, #4d7c6f 0%, #2d5a4d 100%);
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.5rem 0.7rem;
+            background: rgba(255, 255, 255, 0.98);
+            border: 2px solid rgba(16, 185, 129, 0.4);
+            border-radius: clamp(0.85rem, 2.5vw, 1.3rem);
+            padding: clamp(0.95rem, 3vw, 1.35rem);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-            flex-shrink: 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .prayer-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-            pointer-events: none;
+            box-shadow: 0 10px 18px rgba(15, 118, 110, 0.08);
+            gap: 0.75rem;
         }
 
         .prayer-item.active {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 4px 12px rgba(16,185,129,0.5);
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
+            background: #10b981;
+            border-color: #10b981;
+            color: #f8fafc;
         }
 
         .prayer-name-wrapper {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            position: relative;
-            z-index: 1;
+            gap: clamp(0.5rem, 2vw, 0.8rem);
         }
 
         .prayer-icon {
-            font-size: 0.9rem;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
             line-height: 1;
         }
 
         .prayer-name {
             font-weight: 700;
-            font-size: 0.7rem;
-            color: white;
-            text-transform: uppercase;
+            font-size: clamp(1.05rem, 3.2vw, 1.25rem);
+            color: #064e3b;
             letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .prayer-item.active .prayer-name {
+            color: inherit;
         }
 
         .prayer-time {
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: white;
-            letter-spacing: 0.05em;
-            position: relative;
-            z-index: 1;
+            font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .prayer-item.active .prayer-time {
+            color: inherit;
         }
 
         .footer {
-            margin-top: 0.15rem;
-            padding: 0.15rem 0;
+            margin-top: clamp(0.5rem, 2.5vw, 1.5rem);
             text-align: center;
             color: #64748b;
-            font-size: 0.5rem;
-            flex-shrink: 0;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
         }
+
         .hidden { display: none !important; }
 
-        /* Tablet >= 640px */
         @media (min-width: 640px) {
-            body { padding: 1.5rem; }
-            .card { padding: 1.5rem; border-radius: 1.5rem; margin-bottom: 2rem; }
-            #date { font-size: 0.875rem; }
-            #clock { font-size: 2.5rem; }
-            #location { margin-top: 0.75rem; font-size: 1rem; }
-            .countdown { padding: 1.25rem; border-radius: 1.5rem; margin-bottom: 1.5rem; }
-            .countdown-text { font-size: 1rem; }
-            .spinner { width: 3rem; height: 3rem; }
-            .loading-text { font-size: 1rem; }
-            .error { padding: 1.5rem; border-radius: 1.5rem; }
-            .error-text { font-size: 1rem; }
-            .btn-retry { padding: 0.75rem 1.5rem; border-radius: 1rem; font-size: 1rem; }
-            .prayer-list { gap: 0.75rem; }
-            .prayer-item { padding: 1.25rem; border-radius: 1.5rem; }
-            .prayer-name { font-size: 1.125rem; }
-            .prayer-time { font-size: 1.5rem; }
-            .footer { font-size: 0.875rem; }
+            body {
+                padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 2.75rem);
+            }
+
+            .container {
+                width: min(100%, 34rem);
+                gap: 1.35rem;
+            }
+
+            .card,
+            .countdown {
+                border-radius: 1.35rem;
+            }
+
+            .countdown {
+                padding: 1.45rem;
+            }
+
+            .prayer-item {
+                border-radius: 1.35rem;
+                padding: 1.25rem 1.5rem;
+            }
+
+            .prayer-list {
+                gap: 1.25rem;
+            }
         }
 
-        /* Desktop >= 768px */
-        @media (min-width: 768px) {
-            body { padding: 2rem; }
-            #clock { font-size: 3rem; }
-            .prayer-name { font-size: 1.25rem; }
-            .prayer-time { font-size: 1.75rem; }
-        }
-
-        /* Large Desktop >= 1024px */
         @media (min-width: 1024px) {
-            #clock { font-size: 3.5rem; }
-            .prayer-time { font-size: 2rem; }
+            body {
+                padding: 2rem 0 2.5rem;
+            }
+
+            .container {
+                width: min(100%, 28rem);
+                gap: 1rem;
+            }
+
+            .card,
+            .countdown {
+                border-radius: 1.1rem;
+                padding: 1.1rem 1.5rem;
+                box-shadow: 0 12px 24px rgba(15, 118, 110, 0.12);
+            }
+
+            #date {
+                font-size: 0.95rem;
+            }
+
+            #clock {
+                font-size: 2.8rem;
+            }
+
+            #location {
+                font-size: 0.95rem;
+            }
+
+            .countdown {
+                padding: 1.1rem 1.5rem;
+            }
+
+            .countdown-text {
+                font-size: 0.95rem;
+            }
+
+            .prayer-list {
+                gap: 1rem;
+            }
+
+            .prayer-item {
+                border-radius: 1.1rem;
+                padding: 0.9rem 1.35rem;
+                box-shadow: 0 10px 18px rgba(15, 118, 110, 0.08);
+            }
+
+            .prayer-name {
+                font-size: 1rem;
+            }
+
+            .prayer-time {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
