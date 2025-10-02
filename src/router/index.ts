@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory('/salat-time/'),
@@ -7,7 +6,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      // Lazy load HomeView for better performance
+      component: () => import('../views/HomeView.vue')
     }
   ]
 })
