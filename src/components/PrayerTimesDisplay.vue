@@ -49,7 +49,7 @@
               >
                 {{ getPrayerDisplayName(prayer) }}
               </span>
-              <span class="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-emerald-700 tracking-wide">{{ prayerTimes[prayer] }}</span>
+              <span class="font-mono text-xl sm:text-2xl md:text-3xl font-bold text-emerald-700 tracking-wide">{{ getPrayerTime(prayer) }}</span>
             </div>
           </div>
         </div>
@@ -114,6 +114,11 @@ function getPrayerDisplayName(prayer: string): string {
     isha: 'Isya'
   }
   return names[prayer] || prayer
+}
+
+function getPrayerTime(prayer: string): string {
+  if (!prayerTimes.value) return ''
+  return prayerTimes.value[prayer as keyof typeof prayerTimes.value]
 }
 
 function isMainPrayer(prayer: string): boolean {
