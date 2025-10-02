@@ -128,7 +128,7 @@ const upcomingPrayer = computed(() => {
   const currentMinutes = now.getHours() * 60 + now.getMinutes()
 
   for (const prayer of mainPrayers) {
-    const timeStr = prayerTimes.value[prayer]
+    const timeStr = prayerTimes.value[prayer as keyof typeof prayerTimes.value]
     const [hours, minutes] = timeStr.split(':').map(Number)
     const prayerMinutes = hours * 60 + minutes
 
