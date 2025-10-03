@@ -509,7 +509,7 @@
             try {
                 const dateStr = `${day}-${month}-${year}`;
                 //imsak, fajr, syuruq, dhuhr, asr, maghrib, sunset, isha, midnight
-                const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20&tune=3,3,-3,3,4,3,4,3,0`;
+                const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20&tune=3,3,-3,3,3,3,4,3,0`;
 
                 const controller = new AbortController();
                 const timeout = setTimeout(() => controller.abort(), 10000);
@@ -547,19 +547,37 @@
             container.innerHTML = '';
 
             const now = new Date();
-            const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
             let nextPrayerKey = null;
-            let nextPrayerMinutes = Infinity;
+            let nextPrayerDate = null;
+
             for (const p of mainPrayers) {
-                const [h, m] = times[p].split(':').map(Number);
-                let pm = h * 60 + m;
-                if (pm <= currentMinutes) {
-                    pm += 24 * 60;
+                const timeStr = times[p];
+                if (!timeStr) continue;
+
+                const [h, m] = timeStr.split(':').map(Number);
+                const candidateDate = new Date(now);
+                candidateDate.setHours(h, m, 0, 0);
+
+                if (candidateDate < now) {
+                    candidateDate.setDate(candidateDate.getDate() + 1);
                 }
-                if (pm < nextPrayerMinutes) {
-                    nextPrayerMinutes = pm;
+
+                if (!nextPrayerDate || candidateDate < nextPrayerDate) {
+                    nextPrayerDate = candidateDate;
                     nextPrayerKey = p;
+                }
+            }
+
+            // Highlight only when the next prayer still happens today.
+            let highlightPrayerKey = nextPrayerKey;
+            if (nextPrayerDate) {
+                const isSameDay =
+                    nextPrayerDate.getFullYear() === now.getFullYear() &&
+                    nextPrayerDate.getMonth() === now.getMonth() &&
+                    nextPrayerDate.getDate() === now.getDate();
+
+                if (!isSameDay) {
+                    highlightPrayerKey = null;
                 }
             }
 
@@ -567,7 +585,7 @@
                 const div = document.createElement('div');
                 div.className = 'prayer-item';
 
-                const isNext = prayer === nextPrayerKey;
+                const isNext = prayer === highlightPrayerKey;
                 if (isNext) {
                     div.classList.add('active');
                 }
