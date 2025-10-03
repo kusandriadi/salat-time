@@ -508,7 +508,8 @@
 
             try {
                 const dateStr = `${day}-${month}-${year}`;
-                const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20`;
+                //imsak, fajr, syuruq, dhuhr, asr, maghrib, sunset, isha, midnight
+                const url = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${lat}&longitude=${lng}&method=20&tune=3,3,-3,3,4,3,4,3,0`;
 
                 const controller = new AbortController();
                 const timeout = setTimeout(() => controller.abort(), 10000);
