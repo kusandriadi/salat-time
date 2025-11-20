@@ -186,9 +186,9 @@
     function updateCompass(heading) {
         if (!qiblaDirection) return;
 
+        // Fix: Add 180 degrees to correct the reversed direction
         // Rotate entire compass circle so Kaaba icon points to qibla
-        // and phone heading aligns with north
-        const rotation = qiblaDirection - heading;
+        const rotation = qiblaDirection - heading + 180;
         elements.compassCircle.style.transform = `rotate(${rotation}deg)`;
 
         // Update status based on how close to qibla
@@ -611,78 +611,85 @@
     // ========================================
 
     let deferredPrompt;
+    let installBannerShown = false;
 
     window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('beforeinstallprompt fired');
         e.preventDefault();
         deferredPrompt = e;
 
-        // Show custom install button after 10 seconds if not installed
+        // Show custom install button after 3 seconds if not installed
         setTimeout(() => {
-            if (!window.matchMedia('(display-mode: standalone)').matches && deferredPrompt) {
+            if (!window.matchMedia('(display-mode: standalone)').matches &&
+                deferredPrompt &&
+                !installBannerShown) {
                 showInstallPrompt();
             }
-        }, 10000);
+        }, 3000);
     });
 
     function showInstallPrompt() {
+        installBannerShown = true;
+
         // Create install prompt banner
         const installBanner = document.createElement('div');
+        installBanner.id = 'install-banner';
         installBanner.style.cssText = `
             position: fixed;
             bottom: 1rem;
             left: 1rem;
             right: 1rem;
-            background: var(--bg-primary);
-            border: 2px solid var(--primary);
+            background: #0f766e;
+            color: white;
             border-radius: 8px;
             padding: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 1000;
-            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         `;
 
         installBanner.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <div style="flex: 1;">
-                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">
-                        Install Jadwal Sholat
-                    </div>
-                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
-                        Akses cepat dari home screen
-                    </div>
+            <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 0.25rem;">
+                    Install Jadwal Sholat
                 </div>
-                <button id="install-btn" style="
-                    background: var(--primary);
-                    color: white;
-                    border: none;
-                    padding: 0.5rem 1rem;
-                    border-radius: 4px;
-                    font-size: 0.875rem;
-                    cursor: pointer;
-                    white-space: nowrap;
-                ">Install</button>
-                <button id="dismiss-btn" style="
-                    background: transparent;
-                    color: var(--text-secondary);
-                    border: none;
-                    padding: 0.5rem;
-                    cursor: pointer;
-                    font-size: 1.25rem;
-                ">&times;</button>
+                <div style="font-size: 0.875rem; opacity: 0.9;">
+                    Akses cepat dari home screen
+                </div>
             </div>
+            <button id="install-btn" style="
+                background: white;
+                color: #0f766e;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                font-size: 0.875rem;
+                font-weight: 600;
+                cursor: pointer;
+                white-space: nowrap;
+            ">Install</button>
+            <button id="dismiss-btn" style="
+                background: transparent;
+                color: white;
+                border: none;
+                padding: 0.5rem;
+                cursor: pointer;
+                font-size: 1.5rem;
+                line-height: 1;
+            ">&times;</button>
         `;
 
         document.body.appendChild(installBanner);
 
         // Install button handler
-        document.getElementById('install-btn').addEventListener('click', async () => {
+        const installBtn = document.getElementById('install-btn');
+        installBtn.addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
-
-                if (outcome === 'accepted') {
-                    console.log('App installed');
-                }
+                console.log('Install outcome:', outcome);
 
                 deferredPrompt = null;
                 installBanner.remove();
@@ -694,6 +701,13 @@
             installBanner.remove();
         });
     }
+
+    // Check if already installed
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            console.log('App is already installed');
+        }
+    });
 
     // ========================================
     // INITIALIZATION
