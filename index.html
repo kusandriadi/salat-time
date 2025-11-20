@@ -56,6 +56,12 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-btn" data-theme="light" title="Light Mode" aria-label="Light Mode">☀️</button>
+        <button class="theme-btn" data-theme="dark" title="Dark Mode" aria-label="Dark Mode">🌙</button>
+    </div>
+
     <div class="container">
 
         <!-- Header with Clock -->
@@ -63,6 +69,52 @@
             <div id="date"></div>
             <div id="clock">--:--:--</div>
             <div id="location"></div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button id="btn-share" class="btn-action" title="Share ke WhatsApp">
+                    <span>📤</span>
+                    <span>Share</span>
+                </button>
+                <button id="btn-qibla" class="btn-action" title="Arah Kiblat">
+                    <span>🧭</span>
+                    <span>Kiblat</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Qibla Compass (Hidden by default) -->
+        <div id="qibla-card" class="card qibla-compass hidden">
+            <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Arah Kiblat</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                Arahkan bagian atas kompas (N) ke arah Utara
+            </p>
+
+            <div class="compass-container">
+                <div class="compass-circle" id="compass-circle">
+                    <div class="compass-directions">
+                        <div class="compass-direction north">N</div>
+                        <div class="compass-direction east">E</div>
+                        <div class="compass-direction south">S</div>
+                        <div class="compass-direction west">W</div>
+                    </div>
+                    <div class="compass-needle" id="compass-needle"></div>
+                    <div class="compass-center"></div>
+                </div>
+            </div>
+
+            <div class="qibla-info">
+                <div>Arah Kiblat:</div>
+                <div class="qibla-degree" id="qibla-degree">--°</div>
+                <div id="qibla-status" style="color: var(--text-secondary); font-size: 0.85rem;"></div>
+            </div>
+
+            <div id="qibla-error" class="qibla-error hidden"></div>
+
+            <button id="btn-close-qibla" class="btn-action" style="margin-top: 1rem;">
+                <span>✕</span>
+                <span>Tutup</span>
+            </button>
         </div>
 
         <!-- Countdown -->
@@ -84,6 +136,39 @@
 
         <!-- Prayer Times -->
         <div id="prayer-times" class="prayer-list hidden"></div>
+
+        <!-- Share Modal -->
+        <div id="share-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Bagikan Jadwal Sholat</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Pilih jenis jadwal yang ingin dibagikan
+                </p>
+
+                <div class="share-options">
+                    <button id="btn-share-next" class="btn-share-option">
+                        <span class="share-icon">⏰</span>
+                        <div>
+                            <div class="share-title">Sholat Berikutnya</div>
+                            <div class="share-desc">Hanya waktu sholat yang akan datang</div>
+                        </div>
+                    </button>
+
+                    <button id="btn-share-all" class="btn-share-option">
+                        <span class="share-icon">📋</span>
+                        <div>
+                            <div class="share-title">Semua Jadwal</div>
+                            <div class="share-desc">Lengkap 7 waktu sholat hari ini</div>
+                        </div>
+                    </button>
+                </div>
+
+                <button id="btn-close-share" class="btn-action" style="margin-top: 1rem; width: 100%;">
+                    <span>✕</span>
+                    <span>Batal</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="js/app.js"></script>

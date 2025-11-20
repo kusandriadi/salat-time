@@ -2,6 +2,9 @@
     const DATE_LOCALE = 'id-ID';
     const COUNTDOWN_WINDOW_MINUTES = 60;
     const DEFAULT_LOCATION_LABEL = 'Indonesia';
+    const KAABA_LAT = 21.4225;
+    const KAABA_LNG = 39.8262;
+    const WEBSITE_URL = 'https://sholatku.com/'; // Ganti dengan URL website Anda
 
     const PRAYER_NAMES = {
         imsak: 'Imsak',
@@ -42,10 +45,27 @@
         loading: document.getElementById('loading'),
         error: document.getElementById('error'),
         errorText: document.getElementById('error-text'),
-        prayerTimes: document.getElementById('prayer-times')
+        prayerTimes: document.getElementById('prayer-times'),
+        btnShare: document.getElementById('btn-share'),
+        btnQibla: document.getElementById('btn-qibla'),
+        btnCloseQibla: document.getElementById('btn-close-qibla'),
+        qiblaCard: document.getElementById('qibla-card'),
+        qiblaDegree: document.getElementById('qibla-degree'),
+        qiblaStatus: document.getElementById('qibla-status'),
+        qiblaError: document.getElementById('qibla-error'),
+        compassNeedle: document.getElementById('compass-needle'),
+        compassCircle: document.getElementById('compass-circle'),
+        shareModal: document.getElementById('share-modal'),
+        btnShareNext: document.getElementById('btn-share-next'),
+        btnShareAll: document.getElementById('btn-share-all'),
+        btnCloseShare: document.getElementById('btn-close-share')
     };
 
     let prayerTimesData = null;
+    let userLocation = null;
+    let qiblaDirection = null;
+    let deviceOrientation = null;
+    let orientationListener = null;
 
     const hideElement = (element) => element.classList.add('hidden');
     const showElement = (element) => element.classList.remove('hidden');
@@ -109,6 +129,225 @@
         return item;
     };
 
+    // ========================================
+    // THEME MANAGEMENT
+    // ========================================
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark'; // Default dark
+        applyTheme(savedTheme);
+
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+                applyTheme(theme);
+                localStorage.setItem('theme', theme);
+            });
+        });
+    }
+
+    function applyTheme(theme) {
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        const themeBtn = document.querySelector(`[data-theme="${theme}"]`);
+        if (themeBtn) {
+            themeBtn.classList.add('active');
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    // ========================================
+    // QIBLA DIRECTION
+    // ========================================
+
+    function calculateQiblaDirection(lat, lng) {
+        const latRad = lat * Math.PI / 180;
+        const lngRad = lng * Math.PI / 180;
+        const kaabaLatRad = KAABA_LAT * Math.PI / 180;
+        const kaabaLngRad = KAABA_LNG * Math.PI / 180;
+
+        const dLng = kaabaLngRad - lngRad;
+
+        const y = Math.sin(dLng) * Math.cos(kaabaLatRad);
+        const x = Math.cos(latRad) * Math.sin(kaabaLatRad) -
+                  Math.sin(latRad) * Math.cos(kaabaLatRad) * Math.cos(dLng);
+
+        let bearing = Math.atan2(y, x) * 180 / Math.PI;
+        bearing = (bearing + 360) % 360;
+
+        return bearing;
+    }
+
+    function updateCompass(heading) {
+        if (!qiblaDirection) return;
+
+        const needleRotation = qiblaDirection - heading;
+        elements.compassNeedle.style.transform = `translate(-50%, -100%) rotate(${needleRotation}deg)`;
+        elements.compassCircle.style.transform = `rotate(${-heading}deg)`;
+    }
+
+    function startCompass() {
+        if (!userLocation) {
+            showQiblaError('Lokasi tidak tersedia. Pastikan GPS aktif.');
+            return;
+        }
+
+        qiblaDirection = calculateQiblaDirection(userLocation.lat, userLocation.lng);
+        elements.qiblaDegree.textContent = `${Math.round(qiblaDirection)}°`;
+
+        if (!window.DeviceOrientationEvent) {
+            showQiblaError('Kompas tidak didukung di perangkat ini.');
+            updateCompass(0);
+            elements.qiblaStatus.textContent = 'Gunakan kompas fisik untuk navigasi';
+            return;
+        }
+
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        startOrientationListener();
+                    } else {
+                        showQiblaError('Permission untuk kompas ditolak.');
+                        updateCompass(0);
+                    }
+                })
+                .catch(console.error);
+        } else {
+            startOrientationListener();
+        }
+    }
+
+    function startOrientationListener() {
+        hideElement(elements.qiblaError);
+        elements.qiblaStatus.textContent = 'Kompas aktif - Arahkan perangkat ke Utara';
+
+        orientationListener = (event) => {
+            let heading = event.alpha;
+
+            if (event.webkitCompassHeading) {
+                heading = event.webkitCompassHeading;
+            } else if (event.alpha !== null) {
+                heading = 360 - event.alpha;
+            }
+
+            if (heading !== null) {
+                deviceOrientation = heading;
+                updateCompass(heading);
+            }
+        };
+
+        window.addEventListener('deviceorientation', orientationListener);
+    }
+
+    function stopCompass() {
+        if (orientationListener) {
+            window.removeEventListener('deviceorientation', orientationListener);
+            orientationListener = null;
+        }
+        deviceOrientation = null;
+    }
+
+    function showQiblaError(message) {
+        elements.qiblaError.textContent = message;
+        showElement(elements.qiblaError);
+    }
+
+    function isMobileOrTablet() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+               (window.innerWidth <= 1024 && 'ontouchstart' in window);
+    }
+
+    function toggleQiblaCard() {
+        // Check if device is mobile or tablet
+        if (!isMobileOrTablet()) {
+            alert('⚠️ Fitur Kompas Kiblat hanya tersedia di tablet dan smartphone.\n\nGunakan perangkat mobile untuk mengakses fitur ini.');
+            return;
+        }
+
+        if (elements.qiblaCard.classList.contains('hidden')) {
+            showElement(elements.qiblaCard);
+            startCompass();
+            setTimeout(() => {
+                elements.qiblaCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        } else {
+            hideElement(elements.qiblaCard);
+            stopCompass();
+        }
+    }
+
+    // ========================================
+    // WHATSAPP SHARING
+    // ========================================
+
+    function shareToWhatsApp(shareType) {
+        if (!prayerTimesData) {
+            alert('Jadwal sholat belum dimuat');
+            return;
+        }
+
+        const locationName = elements.location.textContent || 'Lokasi Anda';
+        const today = DATE_FORMATTER.format(new Date());
+
+        let message = `🕌 *Jadwal Sholat ${locationName}*\n`;
+        message += `📅 ${today}\n\n`;
+
+        if (shareType === 'next') {
+            // Share next prayer only
+            const now = new Date();
+            const nextPrayer = findNextPrayer(prayerTimesData, now);
+
+            if (nextPrayer) {
+                const time = prayerTimesData[nextPrayer.key];
+                message += `⏰ *Sholat Berikutnya:*\n`;
+                message += `${PRAYER_ICONS[nextPrayer.key]} *${PRAYER_NAMES[nextPrayer.key]}*: ${time}\n\n`;
+
+                const minutesRemaining = getMinutesUntil(nextPrayer.date, now);
+                if (minutesRemaining > 0 && minutesRemaining <= COUNTDOWN_WINDOW_MINUTES) {
+                    message += `⏱ _${minutesRemaining} menit lagi_\n\n`;
+                }
+            }
+        } else {
+            // Share all prayers
+            ALL_PRAYERS.forEach(prayer => {
+                const time = prayerTimesData[prayer];
+                if (time) {
+                    message += `${PRAYER_ICONS[prayer]} *${PRAYER_NAMES[prayer]}*: ${time}\n`;
+                }
+            });
+            message += `\n`;
+        }
+
+        message += `🌐 ${WEBSITE_URL}\n`;
+        message += `✨ _Jadwal Sholat Real-time_`;
+
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, '_blank');
+        hideElement(elements.shareModal);
+    }
+
+    function openShareModal() {
+        if (!prayerTimesData) {
+            alert('Jadwal sholat belum dimuat');
+            return;
+        }
+        showElement(elements.shareModal);
+    }
+
+    function closeShareModal() {
+        hideElement(elements.shareModal);
+    }
+
+    // ========================================
+    // CLOCK & COUNTDOWN
+    // ========================================
+
     function updateClock() {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
@@ -166,6 +405,10 @@
 
         updateCountdown(now);
     }
+
+    // ========================================
+    // GEOLOCATION & API
+    // ========================================
 
     async function getLocation() {
         return new Promise((resolve, reject) => {
@@ -261,7 +504,35 @@
         hideElement(elements.loading);
     }
 
+    // ========================================
+    // EVENT LISTENERS
+    // ========================================
+
+    elements.btnShare.addEventListener('click', openShareModal);
+    elements.btnShareNext.addEventListener('click', () => shareToWhatsApp('next'));
+    elements.btnShareAll.addEventListener('click', () => shareToWhatsApp('all'));
+    elements.btnCloseShare.addEventListener('click', closeShareModal);
+
+    elements.btnQibla.addEventListener('click', toggleQiblaCard);
+    elements.btnCloseQibla.addEventListener('click', () => {
+        hideElement(elements.qiblaCard);
+        stopCompass();
+    });
+
+    // Close modal when clicking outside
+    elements.shareModal.addEventListener('click', (e) => {
+        if (e.target === elements.shareModal) {
+            closeShareModal();
+        }
+    });
+
+    // ========================================
+    // INITIALIZATION
+    // ========================================
+
     async function init() {
+        initTheme();
+
         updateClock();
         setInterval(updateClock, 1000);
 
@@ -269,9 +540,10 @@
         hideElement(elements.error);
 
         try {
-            const { lat, lng } = await getLocation();
+            const location = await getLocation();
+            userLocation = location;
 
-            getCityName(lat, lng)
+            getCityName(location.lat, location.lng)
                 .then((city) => {
                     elements.location.textContent = city || DEFAULT_LOCATION_LABEL;
                 })
@@ -279,7 +551,7 @@
                     elements.location.textContent = DEFAULT_LOCATION_LABEL;
                 });
 
-            const times = await fetchPrayerTimes(lat, lng);
+            const times = await fetchPrayerTimes(location.lat, location.lng);
             displayPrayerTimes(times);
             hideLoading();
         } catch (error) {

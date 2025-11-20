@@ -1,1 +1,731 @@
-:root{color-scheme:light}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;min-height:100vh;background:linear-gradient(160deg,#f0f9ff 0%,#fef9f5 45%,#ecfdf5 100%);padding:clamp(1rem,4vw,2.5rem) clamp(0.75rem,5vw,2rem);display:flex;justify-content:center;align-items:flex-start;overflow-x:hidden;overflow-y:auto}.container{width:min(100%,32rem);margin:0 auto;display:flex;flex-direction:column;gap:clamp(0.85rem,2.5vw,1.5rem)}.card{background:rgba(255,255,255,0.92);border-radius:clamp(1rem,2.8vw,1.45rem);padding:clamp(1.15rem,3.2vw,1.75rem);box-shadow:0 18px 40px rgba(15,118,110,0.08),0 6px 18px rgba(15,23,42,0.04);border:1px solid rgba(148,197,253,0.35);backdrop-filter:blur(6px)}.header{text-align:center;display:flex;flex-direction:column;gap:0.4rem}#date{color:#0f172a;font-size:clamp(0.95rem,2.6vw,1.05rem);font-weight:500;letter-spacing:0.04em}#clock{color:#0f172a;font-size:clamp(2.6rem,9vw,3.1rem);font-weight:700;font-family:'Courier New',monospace;letter-spacing:0.06em;text-shadow:0 10px 24px rgba(15,118,110,0.18)}#location{color:#0284c7;font-weight:600;font-size:clamp(0.95rem,2.8vw,1.05rem);letter-spacing:0.04em}.countdown{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:#f8fafc;border-radius:clamp(0.95rem,2.6vw,1.4rem);padding:clamp(1.1rem,3.5vw,1.6rem);text-align:center;box-shadow:0 18px 40px rgba(14,165,233,0.25);position:relative;overflow:hidden}.countdown::before{content:'';position:absolute;inset:-35% 20% auto;height:120%;background:rgba(255,255,255,0.25);filter:blur(40px);opacity:0.75}.countdown-text{font-weight:500;font-size:clamp(0.95rem,2.8vw,1.05rem);letter-spacing:0.08em}.loading{text-align:center;padding:3.5rem 0;display:flex;flex-direction:column;align-items:center;gap:1rem;color:#0f172a}.spinner{display:inline-block;width:3rem;height:3rem;border:4px solid #d1fae5;border-top-color:#059669;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.loading-text{color:#64748b;font-weight:500;font-size:clamp(1rem,3vw,1.1rem)}.error{background:#fef2f2;border:1px solid #fecaca;border-radius:clamp(0.9rem,2.5vw,1.3rem);padding:clamp(1.25rem,3.5vw,1.75rem);text-align:center;box-shadow:0 12px 20px rgba(248,113,113,0.15)}.error-text{color:#b91c1c;margin-bottom:1rem;font-weight:500;font-size:clamp(1rem,3vw,1.1rem)}.btn-retry{background:#dc2626;color:white;padding:0.75rem 1.5rem;border-radius:999px;border:none;font-weight:600;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;font-size:clamp(0.95rem,2.8vw,1.05rem)}.btn-retry:hover{background:#b91c1c;transform:translateY(-1px)}.btn-retry:active{transform:translateY(0)}.prayer-list{display:flex;flex-direction:column;gap:clamp(0.8rem,2.5vw,1.35rem)}.prayer-item{position:relative;background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(236,253,245,0.92));border:1px solid rgba(148,197,253,0.35);border-radius:clamp(0.95rem,2.5vw,1.3rem);padding:clamp(0.95rem,3vw,1.4rem);display:flex;justify-content:space-between;align-items:center;box-shadow:0 14px 28px rgba(15,118,110,0.08);gap:0.75rem;transition:transform 0.25s ease,box-shadow 0.25s ease,border-color 0.25s ease}.prayer-item:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(15,118,110,0.12);border-color:rgba(14,165,233,0.55)}.prayer-item.active{background:linear-gradient(135deg,#0f766e,#22d3ee);border-color:transparent;color:#ecfeff;box-shadow:0 20px 44px rgba(14,165,233,0.3)}.prayer-name-wrapper{display:flex;align-items:center;gap:clamp(0.5rem,2vw,0.85rem)}.prayer-icon{font-size:clamp(1.2rem,4vw,1.6rem);line-height:1}.prayer-label{display:flex;flex-direction:column;gap:0.15rem}.prayer-name{font-weight:700;font-size:clamp(1.05rem,3.1vw,1.2rem);color:#036672;letter-spacing:0.08em;text-transform:uppercase}.prayer-item.active .prayer-name{color:inherit}.prayer-time{font-family:'Courier New',monospace;font-size:clamp(1.1rem,3.5vw,1.4rem);font-weight:700;color:#0f172a;letter-spacing:0.06em}.prayer-item.active .prayer-time{color:inherit}@keyframes nextPulse{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:0.7;transform:translateY(-1px)}}.prayer-item.active .prayer-name,.prayer-item.active .prayer-time{animation:nextPulse 1.4s ease-in-out infinite}.footer{margin-top:clamp(0.5rem,2.5vw,1.5rem);text-align:center;color:#64748b;font-size:clamp(0.85rem,2.5vw,0.95rem)}.hidden{display:none!important}@media (min-width:640px){body{padding:clamp(1.75rem,5vw,2.5rem) clamp(1.5rem,5vw,2.75rem)}.container{width:min(100%,34rem);gap:1.35rem}.card,.countdown{border-radius:1.35rem}.countdown{padding:1.45rem}.prayer-item{border-radius:1.35rem;padding:1.25rem 1.5rem}.prayer-list{gap:1.25rem}}@media (min-width:1024px){body{padding:2rem 0 2.5rem}.container{width:min(100%,28rem);gap:1rem}.card,.countdown{border-radius:1.1rem;padding:1.1rem 1.5rem;box-shadow:0 12px 24px rgba(15,118,110,0.12)}#date{font-size:0.95rem}#clock{font-size:2.8rem}#location{font-size:0.95rem}.countdown{padding:1.1rem 1.5rem}.countdown-text{font-size:0.95rem}.prayer-list{gap:1rem}.prayer-item{border-radius:1.1rem;padding:0.9rem 1.35rem;box-shadow:0 10px 18px rgba(15,118,110,0.08)}.prayer-name{font-size:1rem}.prayer-time{font-size:1.1rem}}
+/* ========================================
+   CSS Variables for Theme Support
+   ======================================== */
+:root {
+    /* Light Theme Colors */
+    --bg-gradient-start: #f0f9ff;
+    --bg-gradient-mid: #fef9f5;
+    --bg-gradient-end: #ecfdf5;
+
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --card-border: rgba(148, 197, 253, 0.35);
+    --card-shadow: rgba(15, 118, 110, 0.08);
+    --card-shadow-hover: rgba(15, 118, 110, 0.12);
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-accent: #0284c7;
+    --text-prayer-name: #036672;
+
+    --countdown-bg: linear-gradient(135deg, #0ea5e9, #14b8a6);
+    --countdown-text: #f8fafc;
+
+    --prayer-active-bg: linear-gradient(135deg, #0f766e, #22d3ee);
+    --prayer-active-text: #ecfeff;
+
+    --spinner-bg: #d1fae5;
+    --spinner-border: #059669;
+
+    color-scheme: light;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-mid: #1e293b;
+    --bg-gradient-end: #0f172a;
+
+    --card-bg: rgba(30, 41, 59, 0.85);
+    --card-border: rgba(71, 85, 105, 0.5);
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: rgba(0, 0, 0, 0.4);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-accent: #38bdf8;
+    --text-prayer-name: #22d3ee;
+
+    --countdown-bg: linear-gradient(135deg, #0369a1, #0f766e);
+    --countdown-text: #f1f5f9;
+
+    --prayer-active-bg: linear-gradient(135deg, #0e7490, #0891b2);
+    --prayer-active-text: #f0f9ff;
+
+    --spinner-bg: rgba(52, 211, 153, 0.2);
+    --spinner-border: #10b981;
+
+    color-scheme: dark;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 45%, var(--bg-gradient-end) 100%);
+    padding: clamp(1rem, 4vw, 2.5rem) clamp(0.75rem, 5vw, 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: background 0.3s ease;
+}
+
+.container {
+    width: min(100%, 32rem);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.85rem, 2.5vw, 1.5rem);
+}
+
+/* ========================================
+   Theme Toggle Button
+   ======================================== */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 2rem;
+    padding: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    box-shadow: 0 4px 12px var(--card-shadow);
+    backdrop-filter: blur(6px);
+}
+
+.theme-btn {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    font-size: 1.25rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-btn.active {
+    background: var(--countdown-bg);
+    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
+}
+
+/* ========================================
+   Card Component
+   ======================================== */
+.card {
+    background: var(--card-bg);
+    border-radius: clamp(1rem, 2.8vw, 1.45rem);
+    padding: clamp(1.15rem, 3.2vw, 1.75rem);
+    box-shadow: 0 18px 40px var(--card-shadow), 0 6px 18px rgba(15, 23, 42, 0.04);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+#date {
+    color: var(--text-primary);
+    font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+#clock {
+    color: var(--text-primary);
+    font-size: clamp(2.6rem, 9vw, 3.1rem);
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.06em;
+    text-shadow: 0 10px 24px rgba(15, 118, 110, 0.18);
+}
+
+#location {
+    color: var(--text-accent);
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+    letter-spacing: 0.04em;
+}
+
+/* ========================================
+   Action Buttons (Share & Qibla)
+   ======================================== */
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    justify-content: center;
+}
+
+.btn-action {
+    background: var(--countdown-bg);
+    color: var(--countdown-text);
+    border: none;
+    padding: 0.65rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.3);
+}
+
+.btn-action:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   Qibla Compass
+   ======================================== */
+.qibla-compass {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.compass-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 1.5rem auto;
+}
+
+.compass-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 3px solid var(--card-border);
+    box-shadow: 0 8px 24px var(--card-shadow);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.compass-needle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 80px solid #dc2626;
+    transform-origin: bottom center;
+    transform: translate(-50%, -100%) rotate(0deg);
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.compass-needle::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 40px solid #94a3b8;
+}
+
+.compass-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.compass-directions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.compass-direction {
+    position: absolute;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.compass-direction.north {
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #dc2626;
+    font-size: 1.1rem;
+}
+
+.compass-direction.east {
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.compass-direction.south {
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.compass-direction.west {
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.qibla-info {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.qibla-degree {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    margin: 0.5rem 0;
+}
+
+.qibla-error {
+    color: #dc2626;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   Countdown
+   ======================================== */
+.countdown {
+    background: var(--countdown-bg);
+    color: var(--countdown-text);
+    border-radius: clamp(0.95rem, 2.6vw, 1.4rem);
+    padding: clamp(1.1rem, 3.5vw, 1.6rem);
+    text-align: center;
+    box-shadow: 0 18px 40px rgba(14, 165, 233, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown::before {
+    content: '';
+    position: absolute;
+    inset: -35% 20% auto;
+    height: 120%;
+    background: rgba(255, 255, 255, 0.25);
+    filter: blur(40px);
+    opacity: 0.75;
+}
+
+.countdown-text {
+    font-weight: 500;
+    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+    letter-spacing: 0.08em;
+    position: relative;
+}
+
+/* ========================================
+   Loading State
+   ======================================== */
+.loading {
+    text-align: center;
+    padding: 3.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-primary);
+}
+
+.spinner {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid var(--spinner-bg);
+    border-top-color: var(--spinner-border);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+}
+
+/* ========================================
+   Error State
+   ======================================== */
+.error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: clamp(0.9rem, 2.5vw, 1.3rem);
+    padding: clamp(1.25rem, 3.5vw, 1.75rem);
+    text-align: center;
+    box-shadow: 0 12px 20px rgba(248, 113, 113, 0.15);
+}
+
+[data-theme="dark"] .error {
+    background: rgba(127, 29, 29, 0.3);
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.error-text {
+    color: #b91c1c;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+}
+
+[data-theme="dark"] .error-text {
+    color: #fca5a5;
+}
+
+.btn-retry {
+    background: #dc2626;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+}
+
+.btn-retry:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+.btn-retry:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   Prayer Times List
+   ======================================== */
+.prayer-list {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.8rem, 2.5vw, 1.35rem);
+}
+
+.prayer-item {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(236, 253, 245, 0.92));
+    border: 1px solid var(--card-border);
+    border-radius: clamp(0.95rem, 2.5vw, 1.3rem);
+    padding: clamp(0.95rem, 3vw, 1.4rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 14px 28px var(--card-shadow);
+    gap: 0.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+[data-theme="dark"] .prayer-item {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.92));
+}
+
+.prayer-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px var(--card-shadow-hover);
+    border-color: var(--text-accent);
+}
+
+.prayer-item.active {
+    background: var(--prayer-active-bg);
+    border-color: transparent;
+    color: var(--prayer-active-text);
+    box-shadow: 0 20px 44px rgba(14, 165, 233, 0.3);
+}
+
+.prayer-name-wrapper {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 2vw, 0.85rem);
+}
+
+.prayer-icon {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    line-height: 1;
+}
+
+.prayer-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.prayer-name {
+    font-weight: 700;
+    font-size: clamp(1.05rem, 3.1vw, 1.2rem);
+    color: var(--text-prayer-name);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.prayer-item.active .prayer-name {
+    color: inherit;
+}
+
+.prayer-time {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+}
+
+.prayer-item.active .prayer-time {
+    color: inherit;
+}
+
+@keyframes nextPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-1px);
+    }
+}
+
+.prayer-item.active .prayer-name,
+.prayer-item.active .prayer-time {
+    animation: nextPulse 1.4s ease-in-out infinite;
+}
+
+/* ========================================
+   Share Modal
+   ======================================== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--card-border);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.share-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.btn-share-option {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.btn-share-option:hover {
+    border-color: var(--text-accent);
+    background: linear-gradient(135deg, var(--card-bg), rgba(14, 165, 233, 0.05));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px var(--card-shadow);
+}
+
+.btn-share-option:active {
+    transform: translateY(0);
+}
+
+.share-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.share-title {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.share-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   Responsive Breakpoints
+   ======================================== */
+@media (min-width: 640px) {
+    body {
+        padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 2.75rem);
+    }
+
+    .container {
+        width: min(100%, 34rem);
+        gap: 1.35rem;
+    }
+
+    .card,
+    .countdown {
+        border-radius: 1.35rem;
+    }
+
+    .countdown {
+        padding: 1.45rem;
+    }
+
+    .prayer-item {
+        border-radius: 1.35rem;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .prayer-list {
+        gap: 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        padding: 2rem 0 2.5rem;
+    }
+
+    .container {
+        width: min(100%, 28rem);
+        gap: 1rem;
+    }
+
+    .card,
+    .countdown {
+        border-radius: 1.1rem;
+        padding: 1.1rem 1.5rem;
+        box-shadow: 0 12px 24px var(--card-shadow);
+    }
+
+    #date {
+        font-size: 0.95rem;
+    }
+
+    #clock {
+        font-size: 2.8rem;
+    }
+
+    #location {
+        font-size: 0.95rem;
+    }
+
+    .countdown {
+        padding: 1.1rem 1.5rem;
+    }
+
+    .countdown-text {
+        font-size: 0.95rem;
+    }
+
+    .prayer-list {
+        gap: 1rem;
+    }
+
+    .prayer-item {
+        border-radius: 1.1rem;
+        padding: 0.9rem 1.35rem;
+        box-shadow: 0 10px 18px var(--card-shadow);
+    }
+
+    .prayer-name {
+        font-size: 1rem;
+    }
+
+    .prayer-time {
+        font-size: 1.1rem;
+    }
+}
