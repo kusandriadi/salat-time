@@ -594,6 +594,12 @@ body {
     gap: 0.75rem;
 }
 
+.share-option-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
 .btn-share-option {
     background: var(--card-bg);
     border: 2px solid var(--card-border);
@@ -605,6 +611,7 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: left;
+    flex: 1;
 }
 
 .btn-share-option:hover {
@@ -616,6 +623,48 @@ body {
 
 .btn-share-option:active {
     transform: translateY(0);
+}
+
+.btn-copy-small {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 0.75rem;
+    padding: 0.65rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    min-width: 4rem;
+}
+
+.btn-copy-small:hover {
+    border-color: var(--text-accent);
+    background: var(--text-accent);
+    transform: scale(1.05);
+}
+
+.btn-copy-small:active {
+    transform: scale(0.95);
+}
+
+.copy-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.copy-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-copy-small:hover .copy-label {
+    color: white;
 }
 
 .share-icon {

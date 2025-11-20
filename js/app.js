@@ -58,6 +58,8 @@
         shareModal: document.getElementById('share-modal'),
         btnShareNext: document.getElementById('btn-share-next'),
         btnShareAll: document.getElementById('btn-share-all'),
+        btnCopyNext: document.getElementById('btn-copy-next'),
+        btnCopyAll: document.getElementById('btn-copy-all'),
         btnCloseShare: document.getElementById('btn-close-share')
     };
 
@@ -284,17 +286,16 @@
     // WHATSAPP SHARING
     // ========================================
 
-    function shareToWhatsApp(shareType) {
+    function generateShareMessage(shareType) {
         if (!prayerTimesData) {
-            alert('Jadwal sholat belum dimuat');
-            return;
+            return '';
         }
 
         const locationName = elements.location.textContent || 'Lokasi Anda';
         const today = DATE_FORMATTER.format(new Date());
 
-        let message = `🕌 *Jadwal Sholat ${locationName}*\n`;
-        message += `📅 ${today}\n\n`;
+        let message = `*Jadwal Sholat ${locationName}*\n`;
+        message += `${today}\n\n`;
 
         if (shareType === 'next') {
             // Share next prayer only
@@ -303,12 +304,12 @@
 
             if (nextPrayer) {
                 const time = prayerTimesData[nextPrayer.key];
-                message += `⏰ *Sholat Berikutnya:*\n`;
-                message += `${PRAYER_ICONS[nextPrayer.key]} *${PRAYER_NAMES[nextPrayer.key]}*: ${time}\n\n`;
+                message += `*Sholat Berikutnya:*\n`;
+                message += `${PRAYER_NAMES[nextPrayer.key]}: ${time}\n\n`;
 
                 const minutesRemaining = getMinutesUntil(nextPrayer.date, now);
                 if (minutesRemaining > 0 && minutesRemaining <= COUNTDOWN_WINDOW_MINUTES) {
-                    message += `⏱ _${minutesRemaining} menit lagi_\n\n`;
+                    message += `_${minutesRemaining} menit lagi_\n\n`;
                 }
             }
         } else {
@@ -316,20 +317,73 @@
             ALL_PRAYERS.forEach(prayer => {
                 const time = prayerTimesData[prayer];
                 if (time) {
-                    message += `${PRAYER_ICONS[prayer]} *${PRAYER_NAMES[prayer]}*: ${time}\n`;
+                    message += `${PRAYER_NAMES[prayer]}: ${time}\n`;
                 }
             });
             message += `\n`;
         }
 
-        message += `🌐 ${WEBSITE_URL}\n`;
-        message += `✨ _Jadwal Sholat Real-time_`;
+        message += `${WEBSITE_URL}\n`;
 
+        return message;
+    }
+
+    function shareToWhatsApp(shareType) {
+        if (!prayerTimesData) {
+            alert('Jadwal sholat belum dimuat');
+            return;
+        }
+
+        const message = generateShareMessage(shareType);
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
 
         window.open(whatsappUrl, '_blank');
         hideElement(elements.shareModal);
+    }
+
+    function copyToClipboard(shareType) {
+        if (!prayerTimesData) {
+            alert('Jadwal sholat belum dimuat');
+            return;
+        }
+
+        const message = generateShareMessage(shareType);
+
+        // Modern Clipboard API
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(message)
+                .then(() => {
+                    alert('✓ Jadwal sholat berhasil disalin ke clipboard!');
+                    hideElement(elements.shareModal);
+                })
+                .catch(() => {
+                    fallbackCopyToClipboard(message);
+                });
+        } else {
+            fallbackCopyToClipboard(message);
+        }
+    }
+
+    function fallbackCopyToClipboard(text) {
+        // Fallback untuk browser lama
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+            alert('✓ Jadwal sholat berhasil disalin ke clipboard!');
+            hideElement(elements.shareModal);
+        } catch (err) {
+            alert('✗ Gagal menyalin. Silakan copy manual.');
+        }
+
+        document.body.removeChild(textArea);
     }
 
     function openShareModal() {
@@ -511,6 +565,8 @@
     elements.btnShare.addEventListener('click', openShareModal);
     elements.btnShareNext.addEventListener('click', () => shareToWhatsApp('next'));
     elements.btnShareAll.addEventListener('click', () => shareToWhatsApp('all'));
+    elements.btnCopyNext.addEventListener('click', () => copyToClipboard('next'));
+    elements.btnCopyAll.addEventListener('click', () => copyToClipboard('all'));
     elements.btnCloseShare.addEventListener('click', closeShareModal);
 
     elements.btnQibla.addEventListener('click', toggleQiblaCard);
