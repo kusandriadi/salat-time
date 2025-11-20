@@ -1,0 +1,40 @@
+# robots.txt untuk Jadwal Sholat Indonesia
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://sholatku.com/sitemap.xml
+
+# Crawl-delay untuk bot
+Crawl-delay: 0
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
