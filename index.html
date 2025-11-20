@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Theme Color -->
+    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#0f766e">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#0f766e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Jadwal Sholat">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- App Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon-144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon-114.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon-76.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon-72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon-60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon-57.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json">
 
     <!-- SEO Meta Tags -->
     <title>Jadwal Sholat Hari Ini - Waktu Sholat Akurat GPS Real-time 2025</title>
@@ -164,27 +183,60 @@
         <!-- Qibla Compass (Hidden by default) -->
         <div id="qibla-card" class="card qibla-compass hidden">
             <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">Arah Kiblat</h3>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
-                Arahkan bagian atas kompas (N) ke arah Utara
-            </p>
+
+            <div class="qibla-instructions">
+                <div class="instruction-step">
+                    <span class="step-number">1</span>
+                    <span>Letakkan HP di permukaan datar</span>
+                </div>
+                <div class="instruction-step">
+                    <span class="step-number">2</span>
+                    <span>Putar badan hingga <strong>ikon Ka'bah 🕋 di atas</strong></span>
+                </div>
+                <div class="instruction-step">
+                    <span class="step-number">3</span>
+                    <span>Hadap ke arah itu untuk sholat</span>
+                </div>
+            </div>
 
             <div class="compass-container">
                 <div class="compass-circle" id="compass-circle">
-                    <div class="compass-directions">
-                        <div class="compass-direction north">N</div>
-                        <div class="compass-direction east">E</div>
-                        <div class="compass-direction south">S</div>
-                        <div class="compass-direction west">W</div>
+                    <!-- Ka'bah Icon at Qibla Direction -->
+                    <div class="kaaba-indicator" id="kaaba-indicator">
+                        <div class="kaaba-icon">🕋</div>
+                        <div class="kaaba-label">KIBLAT</div>
                     </div>
-                    <div class="compass-needle" id="compass-needle"></div>
-                    <div class="compass-center"></div>
+
+                    <!-- Cardinal Directions -->
+                    <div class="compass-directions">
+                        <div class="compass-direction north">
+                            <div class="direction-icon">▲</div>
+                            <div class="direction-label">UTARA</div>
+                        </div>
+                        <div class="compass-direction east">
+                            <div class="direction-icon">▶</div>
+                            <div class="direction-label">TIMUR</div>
+                        </div>
+                        <div class="compass-direction south">
+                            <div class="direction-icon">▼</div>
+                            <div class="direction-label">SELATAN</div>
+                        </div>
+                        <div class="compass-direction west">
+                            <div class="direction-icon">◀</div>
+                            <div class="direction-label">BARAT</div>
+                        </div>
+                    </div>
+
+                    <div class="compass-center">
+                        <div class="center-dot"></div>
+                        <div class="you-label">ANDA</div>
+                    </div>
                 </div>
             </div>
 
             <div class="qibla-info">
-                <div>Arah Kiblat:</div>
                 <div class="qibla-degree" id="qibla-degree">--°</div>
-                <div id="qibla-status" style="color: var(--text-secondary); font-size: 0.85rem;"></div>
+                <div id="qibla-status" class="qibla-status-text"></div>
             </div>
 
             <div id="qibla-error" class="qibla-error hidden"></div>
@@ -262,5 +314,16 @@
     </div>
 
     <script src="js/app.js"></script>
+
+    <!-- Register Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>

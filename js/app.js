@@ -53,8 +53,8 @@
         qiblaDegree: document.getElementById('qibla-degree'),
         qiblaStatus: document.getElementById('qibla-status'),
         qiblaError: document.getElementById('qibla-error'),
-        compassNeedle: document.getElementById('compass-needle'),
         compassCircle: document.getElementById('compass-circle'),
+        qiblaStatus: document.getElementById('qibla-status'),
         shareModal: document.getElementById('share-modal'),
         btnShareNext: document.getElementById('btn-share-next'),
         btnShareAll: document.getElementById('btn-share-all'),
@@ -186,9 +186,33 @@
     function updateCompass(heading) {
         if (!qiblaDirection) return;
 
-        const needleRotation = qiblaDirection - heading;
-        elements.compassNeedle.style.transform = `translate(-50%, -100%) rotate(${needleRotation}deg)`;
-        elements.compassCircle.style.transform = `rotate(${-heading}deg)`;
+        // Rotate entire compass circle so Kaaba icon points to qibla
+        // and phone heading aligns with north
+        const rotation = qiblaDirection - heading;
+        elements.compassCircle.style.transform = `rotate(${rotation}deg)`;
+
+        // Update status based on how close to qibla
+        updateQiblaStatus(rotation);
+    }
+
+    function updateQiblaStatus(rotation) {
+        // Normalize rotation to 0-360
+        const normalizedRotation = ((rotation % 360) + 360) % 360;
+
+        // Calculate how close to pointing up (0 degrees)
+        const closeness = Math.min(normalizedRotation, 360 - normalizedRotation);
+
+        if (closeness < 5) {
+            elements.qiblaStatus.textContent = '✓ Arah Kiblat Tepat!';
+            elements.qiblaStatus.style.color = '#059669';
+            elements.qiblaStatus.style.fontWeight = '700';
+        } else if (closeness < 15) {
+            elements.qiblaStatus.textContent = 'Hampir tepat, sedikit lagi...';
+            elements.qiblaStatus.style.color = '#ea580c';
+        } else {
+            elements.qiblaStatus.textContent = 'Putar perangkat agar Ka\'bah di atas';
+            elements.qiblaStatus.style.color = 'var(--text-secondary)';
+        }
     }
 
     function startCompass() {
@@ -225,7 +249,7 @@
 
     function startOrientationListener() {
         hideElement(elements.qiblaError);
-        elements.qiblaStatus.textContent = 'Kompas aktif - Arahkan perangkat ke Utara';
+        elements.qiblaStatus.textContent = 'Putar perangkat agar Ka\'bah di atas';
 
         orientationListener = (event) => {
             let heading = event.alpha;
@@ -581,6 +605,95 @@
             closeShareModal();
         }
     });
+
+    // ========================================
+    // PWA INSTALL PROMPT
+    // ========================================
+
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // Show custom install button after 10 seconds if not installed
+        setTimeout(() => {
+            if (!window.matchMedia('(display-mode: standalone)').matches && deferredPrompt) {
+                showInstallPrompt();
+            }
+        }, 10000);
+    });
+
+    function showInstallPrompt() {
+        // Create install prompt banner
+        const installBanner = document.createElement('div');
+        installBanner.style.cssText = `
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: var(--bg-primary);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            animation: slideUp 0.3s ease-out;
+        `;
+
+        installBanner.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <div style="flex: 1;">
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem;">
+                        Install Jadwal Sholat
+                    </div>
+                    <div style="font-size: 0.875rem; color: var(--text-secondary);">
+                        Akses cepat dari home screen
+                    </div>
+                </div>
+                <button id="install-btn" style="
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 0.5rem 1rem;
+                    border-radius: 4px;
+                    font-size: 0.875rem;
+                    cursor: pointer;
+                    white-space: nowrap;
+                ">Install</button>
+                <button id="dismiss-btn" style="
+                    background: transparent;
+                    color: var(--text-secondary);
+                    border: none;
+                    padding: 0.5rem;
+                    cursor: pointer;
+                    font-size: 1.25rem;
+                ">&times;</button>
+            </div>
+        `;
+
+        document.body.appendChild(installBanner);
+
+        // Install button handler
+        document.getElementById('install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+
+                if (outcome === 'accepted') {
+                    console.log('App installed');
+                }
+
+                deferredPrompt = null;
+                installBanner.remove();
+            }
+        });
+
+        // Dismiss button handler
+        document.getElementById('dismiss-btn').addEventListener('click', () => {
+            installBanner.remove();
+        });
+    }
 
     // ========================================
     // INITIALIZATION
