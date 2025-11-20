@@ -54,7 +54,7 @@
         qiblaStatus: document.getElementById('qibla-status'),
         qiblaError: document.getElementById('qibla-error'),
         compassCircle: document.getElementById('compass-circle'),
-        qiblaStatus: document.getElementById('qibla-status'),
+        compassTopMarker: document.getElementById('compass-top-marker'),
         shareModal: document.getElementById('share-modal'),
         btnShareNext: document.getElementById('btn-share-next'),
         btnShareAll: document.getElementById('btn-share-all'),
@@ -202,16 +202,24 @@
         // Calculate how close to pointing up (0 degrees)
         const closeness = Math.min(normalizedRotation, 360 - normalizedRotation);
 
+        // Remove previous classes
+        elements.compassTopMarker.classList.remove('correct', 'incorrect');
+
         if (closeness < 5) {
             elements.qiblaStatus.textContent = '✓ Arah Kiblat Tepat!';
             elements.qiblaStatus.style.color = '#059669';
             elements.qiblaStatus.style.fontWeight = '700';
+            elements.compassTopMarker.classList.add('correct');
         } else if (closeness < 15) {
             elements.qiblaStatus.textContent = 'Hampir tepat, sedikit lagi...';
             elements.qiblaStatus.style.color = '#ea580c';
+            elements.qiblaStatus.style.fontWeight = '500';
+            elements.compassTopMarker.classList.add('incorrect');
         } else {
             elements.qiblaStatus.textContent = 'Putar perangkat agar Ka\'bah di atas';
             elements.qiblaStatus.style.color = 'var(--text-secondary)';
+            elements.qiblaStatus.style.fontWeight = '500';
+            elements.compassTopMarker.classList.add('incorrect');
         }
     }
 
