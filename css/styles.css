@@ -796,6 +796,53 @@ body {
 }
 
 /* ========================================
+   Footer Credits & Disclaimer
+   ======================================== */
+.footer-credits {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+.credits-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
+}
+
+.credits-text strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.credits-text a {
+    color: var(--text-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+}
+
+.credits-text a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}
+
+.disclaimer-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--card-border);
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+/* ========================================
    Utility Classes
    ======================================== */
 .hidden {
