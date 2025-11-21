@@ -2,8 +2,9 @@
     const DATE_LOCALE = 'id-ID';
     const COUNTDOWN_WINDOW_MINUTES = 60;
     const DEFAULT_LOCATION_LABEL = 'Indonesia';
-    const KAABA_LAT = 21.4225;
-    const KAABA_LNG = 39.8262;
+    // Koordinat Ka'bah yang presisi (Makkah, Saudi Arabia)
+    const KAABA_LAT = 21.422487;
+    const KAABA_LNG = 39.826206;
     const WEBSITE_URL = 'https://sholatku.com/'; // Ganti dengan URL website Anda
 
     const PRAYER_NAMES = {
@@ -271,12 +272,22 @@
         elements.qiblaStatus.textContent = 'Putar perangkat agar Ka\'bah di atas';
 
         orientationListener = (event) => {
-            let heading = event.alpha;
+            let heading = null;
 
-            if (event.webkitCompassHeading) {
+            // iOS devices with webkitCompassHeading (already gives true heading)
+            if (event.webkitCompassHeading !== undefined && event.webkitCompassHeading !== null) {
                 heading = event.webkitCompassHeading;
-            } else if (event.alpha !== null) {
-                heading = 360 - event.alpha;
+            }
+            // Android and other devices use alpha
+            // alpha: 0 = North, increases clockwise
+            else if (event.alpha !== null) {
+                // For devices that need absolute orientation
+                if (event.absolute) {
+                    heading = event.alpha;
+                } else {
+                    // For relative orientation, we need to adjust
+                    heading = event.alpha;
+                }
             }
 
             if (heading !== null) {
@@ -285,12 +296,14 @@
             }
         };
 
-        window.addEventListener('deviceorientation', orientationListener);
+        window.addEventListener('deviceorientationabsolute', orientationListener, true);
+        window.addEventListener('deviceorientation', orientationListener, true);
     }
 
     function stopCompass() {
         if (orientationListener) {
-            window.removeEventListener('deviceorientation', orientationListener);
+            window.removeEventListener('deviceorientationabsolute', orientationListener, true);
+            window.removeEventListener('deviceorientation', orientationListener, true);
             orientationListener = null;
         }
         deviceOrientation = null;
