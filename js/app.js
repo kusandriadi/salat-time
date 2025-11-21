@@ -203,6 +203,10 @@
         const rotation = qiblaDirection - heading;
         elements.compassCircle.style.transform = `rotate(${rotation}deg)`;
 
+        // Debug info - show current heading
+        const debugInfo = `Kiblat: ${Math.round(qiblaDirection)}° | Arah: ${Math.round(heading)}°`;
+        elements.qiblaDegree.textContent = debugInfo;
+
         // Update status based on how close to qibla
         updateQiblaStatus(rotation);
     }
@@ -274,20 +278,16 @@
         orientationListener = (event) => {
             let heading = null;
 
-            // iOS devices with webkitCompassHeading (already gives true heading)
+            // iOS Safari with webkitCompassHeading
             if (event.webkitCompassHeading !== undefined && event.webkitCompassHeading !== null) {
+                // webkitCompassHeading: 0 = North, increases clockwise (0-360)
                 heading = event.webkitCompassHeading;
             }
-            // Android and other devices use alpha
-            // alpha: 0 = North, increases clockwise
+            // Standard deviceorientation event (Android, Chrome, etc)
             else if (event.alpha !== null) {
-                // For devices that need absolute orientation
-                if (event.absolute) {
-                    heading = event.alpha;
-                } else {
-                    // For relative orientation, we need to adjust
-                    heading = event.alpha;
-                }
+                // On Android, alpha needs to be converted
+                // Formula from MDN and Stack Overflow for correct compass heading
+                heading = Math.abs(event.alpha - 360);
             }
 
             if (heading !== null) {
@@ -296,8 +296,12 @@
             }
         };
 
-        window.addEventListener('deviceorientationabsolute', orientationListener, true);
-        window.addEventListener('deviceorientation', orientationListener, true);
+        // Try absolute orientation first (better for compass)
+        if (window.DeviceOrientationEvent && 'ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', orientationListener, true);
+        } else {
+            window.addEventListener('deviceorientation', orientationListener, true);
+        }
     }
 
     function stopCompass() {
