@@ -383,7 +383,7 @@
             message += `\n`;
         }
 
-        message += `${WEBSITE_URL}\n`;
+        message += `${WEBSITE_URL}`;
 
         return message;
     }
