@@ -14,6 +14,25 @@ Website untuk cek jadwal sholat berdasarkan lokasi GPS. Gratis, tanpa iklan.
 - **Share WhatsApp** - Bagikan jadwal ke keluarga/teman
 - **Copy Clipboard** - Bisa copy jadwal untuk share kemana aja
 
+## Installation
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/kusandriadi/salat-time.git
+   cd salat-time
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Buka aplikasi**
+   - Langsung buka `index.html` di browser, atau
+   - Gunakan local server (misal: Live Server di VS Code)
+
+**Catatan**: Dependencies hanya untuk development tools. Aplikasi bisa langsung dibuka di browser tanpa build process.
+
 ## Tech Stack
 
 - HTML + CSS + JavaScript murni (vanilla, tanpa framework)

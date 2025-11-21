@@ -166,18 +166,27 @@
     // ========================================
 
     function calculateQiblaDirection(lat, lng) {
-        const latRad = lat * Math.PI / 180;
-        const lngRad = lng * Math.PI / 180;
-        const kaabaLatRad = KAABA_LAT * Math.PI / 180;
-        const kaabaLngRad = KAABA_LNG * Math.PI / 180;
+        // Convert degrees to radians
+        const toRad = (deg) => deg * Math.PI / 180;
+        const toDeg = (rad) => rad * 180 / Math.PI;
 
-        const dLng = kaabaLngRad - lngRad;
+        // Convert coordinates to radians
+        const lat1 = toRad(lat);
+        const lng1 = toRad(lng);
+        const lat2 = toRad(KAABA_LAT);
+        const lng2 = toRad(KAABA_LNG);
 
-        const y = Math.sin(dLng) * Math.cos(kaabaLatRad);
-        const x = Math.cos(latRad) * Math.sin(kaabaLatRad) -
-                  Math.sin(latRad) * Math.cos(kaabaLatRad) * Math.cos(dLng);
+        // Calculate difference in longitude
+        const dLng = lng2 - lng1;
 
-        let bearing = Math.atan2(y, x) * 180 / Math.PI;
+        // Calculate bearing using Great Circle formula
+        // This is the standard formula used in aviation and navigation
+        const y = Math.sin(dLng) * Math.cos(lat2);
+        const x = Math.cos(lat1) * Math.sin(lat2) -
+                  Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng);
+
+        // Convert to degrees and normalize to 0-360
+        let bearing = toDeg(Math.atan2(y, x));
         bearing = (bearing + 360) % 360;
 
         return bearing;
@@ -186,9 +195,11 @@
     function updateCompass(heading) {
         if (!qiblaDirection) return;
 
-        // Fix: Add 180 degrees to correct the reversed direction
-        // Rotate entire compass circle so Kaaba icon points to qibla
-        const rotation = qiblaDirection - heading + 180;
+        // Calculate rotation to align Kaaba icon with actual qibla direction
+        // heading = current device heading (where device is pointing)
+        // qiblaDirection = actual direction to Kaaba
+        // We rotate the compass so that the Kaaba icon aligns with top marker
+        const rotation = qiblaDirection - heading;
         elements.compassCircle.style.transform = `rotate(${rotation}deg)`;
 
         // Update status based on how close to qibla
