@@ -1,0 +1,13 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "qibla-direction": "^1.0.0",
+      },
+    },
+  },
+  "packages": {
+    "qibla-direction": ["qibla-direction@1.0.0", "", {}, "sha512-rgXPcfq50K/bxRCBO+2fATkGnl2EaCP7L1pfGqMstMYpnyxzpx8sRZdKgj3j1nNpFCjrUvRX5E6wy+nyy2r3ag=="],
+  }
+}
