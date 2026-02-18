@@ -11,6 +11,7 @@
         imsak: 'Imsak',
         fajr: 'Subuh',
         syuruq: 'Terbit',
+        dhuha: 'Dhuha',
         dhuhr: 'Dzuhur',
         asr: 'Ashar',
         maghrib: 'Maghrib',
@@ -21,6 +22,7 @@
         imsak: '🌘',
         fajr: '🌄',
         syuruq: '🌅',
+        dhuha: '☀️',
         dhuhr: '🌞',
         asr: '🌇',
         maghrib: '🌆',
@@ -28,7 +30,7 @@
     };
 
     const MAIN_PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
-    const ALL_PRAYERS = ['imsak', 'fajr', 'syuruq', 'dhuhr', 'asr', 'maghrib', 'isha'];
+    const ALL_PRAYERS = ['imsak', 'fajr', 'syuruq', 'dhuha', 'dhuhr', 'asr', 'maghrib', 'isha'];
 
     const DATE_FORMATTER = new Intl.DateTimeFormat(DATE_LOCALE, {
         weekday: 'long',
@@ -544,7 +546,7 @@
         });
     }
 
-    async function getCityName(lat, lng) {
+    async function getNominatimAddress(lat, lng) {
         try {
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 3000);
@@ -561,12 +563,106 @@
             }
 
             const data = await response.json();
-            const address = data.address || {};
-
-            return address.city || address.town || address.county || address.state || DEFAULT_LOCATION_LABEL;
+            return data.address || {};
         } catch (_error) {
-            return DEFAULT_LOCATION_LABEL;
+            return {};
         }
+    }
+
+    function getDisplayName(address) {
+        return address.city || address.town || address.county || address.state || DEFAULT_LOCATION_LABEL;
+    }
+
+    async function matchCityToCSV(address) {
+        const response = await fetch('kemenag/index.json');
+        if (!response.ok) throw new Error('Gagal memuat index kota');
+        const index = await response.json();
+
+        // Try direct match: city ("Kota X") or county ("Kabupaten X" → "Kab. X")
+        const candidates = [];
+
+        if (address.city) candidates.push(address.city);
+        if (address.county) {
+            candidates.push(address.county);
+            // "Kabupaten X" → "Kab. X"
+            candidates.push(address.county.replace(/^Kabupaten\s+/i, 'Kab. '));
+        }
+        if (address.town) candidates.push('Kota ' + address.town);
+
+        for (const name of candidates) {
+            if (index[name]) {
+                return { city: name, file: index[name].file };
+            }
+        }
+
+        // Fuzzy: normalize and compare
+        const normalize = (s) => s.toLowerCase().replace(/^(kabupaten|kab\.|kota)\s+/i, '').trim();
+
+        const addressNames = candidates.map(normalize).filter(Boolean);
+        for (const [csvCity, info] of Object.entries(index)) {
+            const csvNorm = normalize(csvCity);
+            if (addressNames.some(n => n === csvNorm)) {
+                return { city: csvCity, file: info.file };
+            }
+        }
+
+        return null;
+    }
+
+    function parseCSVRow(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') {
+                inQuotes = !inQuotes;
+            } else if (ch === ',' && !inQuotes) {
+                result.push(current.trim());
+                current = '';
+            } else {
+                current += ch;
+            }
+        }
+        result.push(current.trim());
+        return result;
+    }
+
+    async function fetchPrayerTimesFromCSV(matchedCity) {
+        const now = new Date();
+        const year = now.getFullYear();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const todayStr = `${day}/${month}/${year}`;
+
+        const url = `kemenag/${year}/${matchedCity.file}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Data jadwal tahun ${year} tidak tersedia.`);
+        }
+
+        const text = await response.text();
+        const lines = text.split('\n').filter(l => l.trim());
+
+        // Find row matching city + today's date
+        for (let i = 1; i < lines.length; i++) {
+            const cols = parseCSVRow(lines[i]);
+            // cols: [Kota/Kabupaten, Tanggal, Imsak, Subuh, Terbit, Dhuha, Dzuhur, Ashar, Maghrib, Isya]
+            if (cols[0] === matchedCity.city && cols[1].includes(todayStr)) {
+                return {
+                    imsak: cols[2],
+                    fajr: cols[3],
+                    syuruq: cols[4],
+                    dhuha: cols[5],
+                    dhuhr: cols[6],
+                    asr: cols[7],
+                    maghrib: cols[8],
+                    isha: cols[9]
+                };
+            }
+        }
+
+        throw new Error(`Jadwal shalat untuk ${matchedCity.city} tanggal ${todayStr} tidak ditemukan.`);
     }
 
     async function fetchPrayerTimes(lat, lng) {
@@ -659,15 +755,23 @@
             const location = await getLocation();
             userLocation = location;
 
-            getCityName(location.lat, location.lng)
-                .then((city) => {
-                    elements.location.textContent = city || DEFAULT_LOCATION_LABEL;
-                })
-                .catch(() => {
-                    elements.location.textContent = DEFAULT_LOCATION_LABEL;
-                });
+            const address = await getNominatimAddress(location.lat, location.lng);
+            elements.location.textContent = getDisplayName(address);
 
-            const times = await fetchPrayerTimes(location.lat, location.lng);
+            let times;
+
+            if (address.country_code === 'id') {
+                // Indonesia → use Kemenag CSV
+                const matchedCity = await matchCityToCSV(address);
+                if (!matchedCity) {
+                    throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
+                }
+                times = await fetchPrayerTimesFromCSV(matchedCity);
+            } else {
+                // Outside Indonesia → fallback to Aladhan API
+                times = await fetchPrayerTimes(location.lat, location.lng);
+            }
+
             displayPrayerTimes(times);
             hideLoading();
         } catch (error) {
