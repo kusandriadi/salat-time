@@ -579,15 +579,27 @@
         const index = await response.json();
 
         // Build candidate names from Nominatim address
+        // Nominatim inconsistently includes/omits "Kota"/"Kabupaten" prefix,
+        // so we try both with and without prefix for each field.
         const candidates = [];
 
-        if (address.city) candidates.push(address.city);
+        if (address.city) {
+            candidates.push(address.city);
+            if (!/^kota\s/i.test(address.city)) {
+                candidates.push('Kota ' + address.city);
+            }
+        }
         if (address.county) {
             candidates.push(address.county);
-            // "Kabupaten X" → "Kab. X"
             candidates.push(address.county.replace(/^Kabupaten\s+/i, 'Kab. '));
+            if (!/^(kabupaten|kab\.)\s/i.test(address.county)) {
+                candidates.push('Kab. ' + address.county);
+            }
         }
-        if (address.town) candidates.push('Kota ' + address.town);
+        if (address.town) {
+            candidates.push('Kota ' + address.town);
+            candidates.push('Kab. ' + address.town);
+        }
 
         // 1) Direct match
         for (const name of candidates) {
