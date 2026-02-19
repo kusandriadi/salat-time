@@ -578,7 +578,7 @@
         if (!response.ok) throw new Error('Gagal memuat index kota');
         const index = await response.json();
 
-        // Try direct match: city ("Kota X") or county ("Kabupaten X" → "Kab. X")
+        // Build candidate names from Nominatim address
         const candidates = [];
 
         if (address.city) candidates.push(address.city);
@@ -589,19 +589,36 @@
         }
         if (address.town) candidates.push('Kota ' + address.town);
 
+        // 1) Direct match
         for (const name of candidates) {
             if (index[name]) {
                 return { city: name, file: index[name].file };
             }
         }
 
-        // Fuzzy: normalize and compare
-        const normalize = (s) => s.toLowerCase().replace(/^(kabupaten|kab\.|kota)\s+/i, '').trim();
+        // Normalize format but KEEP Kab./Kota prefix (they distinguish different cities)
+        const normalize = (s) => s.toLowerCase()
+            .replace(/^kabupaten\s+/i, 'kab. ')
+            .replace(/\s*administrasi\s*/i, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
 
-        const addressNames = candidates.map(normalize).filter(Boolean);
+        // 2) Normalized exact match
+        const addressNorms = candidates.map(normalize).filter(Boolean);
         for (const [csvCity, info] of Object.entries(index)) {
             const csvNorm = normalize(csvCity);
-            if (addressNames.some(n => n === csvNorm)) {
+            if (addressNorms.some(n => n === csvNorm)) {
+                return { city: csvCity, file: info.file };
+            }
+        }
+
+        // 3) Strip directional suffix (Pusat/Timur/Selatan/Barat/Utara) and retry
+        //    Handles DKI Jakarta: "Kota Administrasi Jakarta Pusat" → "kota jakarta" → matches "Kota Jakarta"
+        const stripDirection = (s) => s.replace(/\s+(pusat|timur|selatan|barat|utara)$/i, '').trim();
+        const strippedNorms = addressNorms.map(stripDirection).filter(Boolean);
+        for (const [csvCity, info] of Object.entries(index)) {
+            const csvNorm = normalize(csvCity);
+            if (strippedNorms.some(n => n === csvNorm)) {
                 return { city: csvCity, file: info.file };
             }
         }
