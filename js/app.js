@@ -785,7 +785,6 @@
             userLocation = location;
 
             const address = await getNominatimAddress(location.lat, location.lng);
-            elements.location.textContent = getDisplayName(address);
 
             let times;
 
@@ -795,9 +794,11 @@
                 if (!matchedCity) {
                     throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
                 }
+                elements.location.textContent = matchedCity.city;
                 times = await fetchPrayerTimesFromCSV(matchedCity);
             } else {
                 // Outside Indonesia → fallback to Aladhan API
+                elements.location.textContent = getDisplayName(address);
                 times = await fetchPrayerTimes(location.lat, location.lng);
             }
 
