@@ -171,6 +171,13 @@ body {
 }
 
 
+#location {
+    color: var(--text-accent);
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+    letter-spacing: 0.04em;
+}
+
 /* ========================================
    City Search
    ======================================== */
@@ -187,30 +194,22 @@ body {
 .city-input {
     flex: 1;
     padding: 0.6rem 1rem;
-    border: 2px solid transparent;
+    border: 2px solid var(--card-border);
     border-radius: 999px;
-    background: transparent;
-    color: var(--text-accent);
-    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 0.04em;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.9rem;
     outline: none;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 .city-input::placeholder {
     color: var(--text-secondary);
     opacity: 0.7;
-    font-weight: 400;
 }
 
 .city-input:focus {
-    border-color: var(--card-border);
-    background: var(--card-bg);
-    text-align: left;
-    font-weight: 400;
-    color: var(--text-primary);
+    border-color: var(--text-accent);
 }
 
 .btn-gps {
