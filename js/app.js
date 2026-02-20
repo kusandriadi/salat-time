@@ -42,7 +42,6 @@
     const elements = {
         clock: document.getElementById('clock'),
         date: document.getElementById('date'),
-        location: document.getElementById('location'),
         countdown: document.getElementById('countdown'),
         countdownText: document.getElementById('countdown-text'),
         loading: document.getElementById('loading'),
@@ -358,7 +357,7 @@
             return '';
         }
 
-        const locationName = elements.location.textContent || 'Lokasi Anda';
+        const locationName = elements.cityInput.value || 'Lokasi Anda';
         const today = DATE_FORMATTER.format(new Date());
 
         let message = `*Jadwal Sholat ${locationName}*\n`;
@@ -817,7 +816,7 @@
 
         try {
             const matchedCity = { city: cityName, file: info.file };
-            elements.location.textContent = cityName;
+            elements.cityInput.value = cityName;
             const times = await fetchPrayerTimesFromJSON(matchedCity);
             displayPrayerTimes(times);
         } catch (error) {
@@ -841,10 +840,10 @@
                 if (!matchedCity) {
                     throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
                 }
-                elements.location.textContent = matchedCity.city;
+                elements.cityInput.value = matchedCity.city;
                 times = await fetchPrayerTimesFromJSON(matchedCity);
             } else {
-                elements.location.textContent = getDisplayName(address);
+                elements.cityInput.value = getDisplayName(address);
                 times = await fetchPrayerTimes(location.lat, location.lng);
             }
 
@@ -891,7 +890,7 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        elements.location.textContent = DEFAULT_LOCATION_LABEL;
+        elements.cityInput.value = '';
         hideElement(elements.error);
 
         // Check for saved city selection
