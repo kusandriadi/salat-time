@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup - Fullscreen Card Style</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 45%, #0f172a 100%);
+            color: #f1f5f9;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0.75rem;
+            overflow: hidden;
+        }
+
+        .container {
+            width: min(100%, 32rem);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.85);
+            border-radius: 1rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            backdrop-filter: blur(6px);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .date { font-size: 0.85rem; color: #94a3b8; }
+        .clock {
+            font-size: clamp(2rem, 7vw, 2.5rem);
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.06em;
+        }
+        .location {
+            color: #38bdf8;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+            justify-content: center;
+        }
+        .btn {
+            background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Countdown */
+        .countdown {
+            background: linear-gradient(135deg, #0369a1, #0f766e);
+            border-radius: 0.85rem;
+            padding: 0.55rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* Prayer List - individual cards */
+        .prayer-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .prayer-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 0.75rem;
+        }
+
+        .prayer-item.active {
+            background: linear-gradient(135deg, #0e7490, #0891b2);
+            border-color: transparent;
+            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3);
+        }
+
+        .prayer-left {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .prayer-icon { font-size: 1.1rem; }
+
+        .prayer-name {
+            font-weight: 700;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+            color: #22d3ee;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .prayer-item.active .prayer-name { color: inherit; }
+
+        .prayer-time {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(1rem, 3vw, 1.15rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 0.6rem 1rem;
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(12px);
+            text-align: center;
+        }
+
+        .credits-text {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin: 0 0 0.35rem 0;
+            line-height: 1.5;
+            white-space: nowrap;
+        }
+
+        .credits-text strong {
+            color: #f1f5f9;
+            font-weight: 600;
+        }
+
+        .disclaimer-text {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin: 0;
+            padding-top: 0.35rem;
+            border-top: 1px solid rgba(71, 85, 105, 0.5);
+            line-height: 1.4;
+        }
+
+        /* Tablet */
+        @media (min-width: 640px) {
+            body { padding: 1rem; }
+            .prayer-item {
+                border-radius: 1rem;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            body { padding: 1.5rem; }
+            .container { width: min(100%, 28rem); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="card header">
+            <div class="date">Kamis, 20 Februari 2026</div>
+            <div class="clock">14:32:08</div>
+            <div class="location">Kota Tangerang</div>
+            <div class="action-buttons">
+                <button class="btn"><span>📤</span> Share</button>
+                <button class="btn"><span>🧭</span> Kiblat</button>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown">
+            28 menit lagi masuk waktu shalat Ashar
+        </div>
+
+        <!-- Prayer Times - Individual Cards -->
+        <div class="prayer-list">
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌘</span>
+                    <span class="prayer-name">Imsak</span>
+                </div>
+                <span class="prayer-time">04:32</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌄</span>
+                    <span class="prayer-name">Subuh</span>
+                </div>
+                <span class="prayer-time">04:42</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌅</span>
+                    <span class="prayer-name">Terbit</span>
+                </div>
+                <span class="prayer-time">05:56</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">☀️</span>
+                    <span class="prayer-name">Dhuha</span>
+                </div>
+                <span class="prayer-time">06:23</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌞</span>
+                    <span class="prayer-name">Dzuhur</span>
+                </div>
+                <span class="prayer-time">12:11</span>
+            </div>
+            <div class="prayer-item active">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌇</span>
+                    <span class="prayer-name">Ashar</span>
+                </div>
+                <span class="prayer-time">15:20</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌆</span>
+                    <span class="prayer-name">Maghrib</span>
+                </div>
+                <span class="prayer-time">18:18</span>
+            </div>
+            <div class="prayer-item">
+                <div class="prayer-left">
+                    <span class="prayer-icon">🌙</span>
+                    <span class="prayer-name">Isya</span>
+                </div>
+                <span class="prayer-time">19:28</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="credits-text">
+                Data waktu sholat bersumber dari <strong>Kementerian Agama RI</strong>
+            </p>
+            <p class="disclaimer-text">
+                Gunakan sebagai panduan. Untuk kepastian, silakan merujuk pada pengumuman masjid setempat.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

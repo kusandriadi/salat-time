@@ -42,7 +42,6 @@
     const elements = {
         clock: document.getElementById('clock'),
         date: document.getElementById('date'),
-        location: document.getElementById('location'),
         countdown: document.getElementById('countdown'),
         countdownText: document.getElementById('countdown-text'),
         loading: document.getElementById('loading'),
@@ -66,8 +65,7 @@
         btnCloseShare: document.getElementById('btn-close-share'),
         citySearch: document.getElementById('city-search'),
         cityInput: document.getElementById('city-input'),
-        cityResults: document.getElementById('city-results'),
-        btnGps: document.getElementById('btn-gps')
+        cityResults: document.getElementById('city-results')
     };
 
     let prayerTimesData = null;
@@ -358,7 +356,7 @@
             return '';
         }
 
-        const locationName = elements.location.textContent || 'Lokasi Anda';
+        const locationName = elements.cityInput.value || 'Lokasi Anda';
         const today = DATE_FORMATTER.format(new Date());
 
         let message = `*Jadwal Sholat ${locationName}*\n`;
@@ -752,8 +750,16 @@
         });
 
         elements.cityInput.addEventListener('focus', () => {
-            if (elements.cityInput.value.length >= 2) {
-                filterCities(elements.cityInput.value);
+            elements.cityInput.select();
+        });
+
+        elements.cityInput.addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const firstItem = elements.cityResults.querySelector('.city-result-item');
+                if (firstItem) {
+                    await selectCity(firstItem.dataset.city);
+                }
             }
         });
 
@@ -761,16 +767,6 @@
             if (!elements.citySearch.contains(e.target)) {
                 elements.cityResults.classList.add('hidden');
             }
-        });
-
-        elements.btnGps.addEventListener('click', async () => {
-            localStorage.removeItem('selectedCity');
-            elements.cityInput.value = '';
-            elements.cityResults.classList.add('hidden');
-            hideElement(elements.prayerTimes);
-            hideElement(elements.error);
-            showElement(elements.loading);
-            await loadPrayerTimesByGPS();
         });
     }
 
@@ -803,8 +799,8 @@
 
     async function selectCity(cityName) {
         elements.cityResults.classList.add('hidden');
-        elements.cityInput.value = '';
-        elements.location.textContent = cityName;
+        elements.cityInput.value = cityName;
+        elements.cityInput.blur();
 
         const index = await getCityIndex();
         const info = index[cityName];
@@ -818,7 +814,6 @@
 
         try {
             const matchedCity = { city: cityName, file: info.file };
-            elements.location.textContent = cityName;
             const times = await fetchPrayerTimesFromJSON(matchedCity);
             displayPrayerTimes(times);
         } catch (error) {
@@ -842,10 +837,10 @@
                 if (!matchedCity) {
                     throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
                 }
-                elements.location.textContent = matchedCity.city;
+                elements.cityInput.value = matchedCity.city;
                 times = await fetchPrayerTimesFromJSON(matchedCity);
             } else {
-                elements.location.textContent = getDisplayName(address);
+                elements.cityInput.value = getDisplayName(address);
                 times = await fetchPrayerTimes(location.lat, location.lng);
             }
 
@@ -892,7 +887,6 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        elements.location.textContent = DEFAULT_LOCATION_LABEL;
         hideElement(elements.error);
 
         // Check for saved city selection

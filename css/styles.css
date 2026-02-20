@@ -171,13 +171,6 @@ body {
 }
 
 
-#location {
-    color: var(--text-accent);
-    font-weight: 600;
-    font-size: clamp(0.95rem, 2.8vw, 1.05rem);
-    letter-spacing: 0.04em;
-}
-
 /* ========================================
    City Search
    ======================================== */
@@ -186,19 +179,16 @@ body {
     margin-top: 0.5rem;
 }
 
-.city-search-row {
-    display: flex;
-    gap: 0.5rem;
-}
-
 .city-input {
-    flex: 1;
+    width: 100%;
     padding: 0.6rem 1rem;
     border: 2px solid var(--card-border);
     border-radius: 999px;
     background: var(--card-bg);
-    color: var(--text-primary);
+    color: var(--text-accent);
     font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
     outline: none;
     transition: border-color 0.2s ease;
 }
@@ -206,31 +196,14 @@ body {
 .city-input::placeholder {
     color: var(--text-secondary);
     opacity: 0.7;
+    font-weight: 400;
 }
 
 .city-input:focus {
     border-color: var(--text-accent);
-}
-
-.btn-gps {
-    background: var(--countdown-bg);
-    color: var(--countdown-text);
-    border: none;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
-    flex-shrink: 0;
-}
-
-.btn-gps:hover {
-    transform: scale(1.1);
+    text-align: left;
+    font-weight: 400;
+    color: var(--text-primary);
 }
 
 .city-results {
@@ -1075,10 +1048,6 @@ body {
 
     #clock {
         font-size: 2.8rem;
-    }
-
-    #location {
-        font-size: 0.95rem;
     }
 
     .countdown {
