@@ -24,13 +24,31 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Build JSON from CSV
+        run: bun run scripts/build-json.js
+
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p _site
+          cp index.html robots.txt _site/
+          cp -r css js node_modules _site/
+          mkdir -p _site/kemenag
+          cp kemenag/index.json _site/kemenag/
+          for year in kemenag/*/; do
+            if [ -d "$year/json" ]; then
+              yearname=$(basename "$year")
+              mkdir -p "_site/kemenag/$yearname/json"
+              cp "$year/json/"*.json "_site/kemenag/$yearname/json/"
+            fi
+          done
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

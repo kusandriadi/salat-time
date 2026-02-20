@@ -63,11 +63,16 @@
         btnShareAll: document.getElementById('btn-share-all'),
         btnCopyNext: document.getElementById('btn-copy-next'),
         btnCopyAll: document.getElementById('btn-copy-all'),
-        btnCloseShare: document.getElementById('btn-close-share')
+        btnCloseShare: document.getElementById('btn-close-share'),
+        citySearch: document.getElementById('city-search'),
+        cityInput: document.getElementById('city-input'),
+        cityResults: document.getElementById('city-results'),
+        btnGps: document.getElementById('btn-gps')
     };
 
     let prayerTimesData = null;
     let userLocation = null;
+    let cityIndex = null;
     let qiblaDirection = null;
     let deviceOrientation = null;
     let orientationListener = null;
@@ -638,55 +643,38 @@
         return null;
     }
 
-    function parseCSVRow(line) {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-            const ch = line[i];
-            if (ch === '"') {
-                inQuotes = !inQuotes;
-            } else if (ch === ',' && !inQuotes) {
-                result.push(current.trim());
-                current = '';
-            } else {
-                current += ch;
-            }
-        }
-        result.push(current.trim());
-        return result;
-    }
-
-    async function fetchPrayerTimesFromCSV(matchedCity) {
+    async function fetchPrayerTimesFromJSON(matchedCity) {
         const now = new Date();
         const year = now.getFullYear();
         const day = String(now.getDate()).padStart(2, '0');
         const month = String(now.getMonth() + 1).padStart(2, '0');
-        const todayStr = `${day}/${month}/${year}`;
 
-        const url = `kemenag/${year}/${matchedCity.file}`;
+        const jsonFile = matchedCity.file.replace('.csv', '.json');
+        const url = `kemenag/${year}/json/${jsonFile}`;
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Data jadwal tahun ${year} tidak tersedia.`);
         }
 
-        const text = await response.text();
-        const lines = text.split('\n').filter(l => l.trim());
+        const data = await response.json();
+        const cityData = data[matchedCity.city];
+        if (!cityData) {
+            throw new Error(`Kota ${matchedCity.city} tidak ditemukan dalam data.`);
+        }
 
-        // Find row matching city + today's date
-        for (let i = 1; i < lines.length; i++) {
-            const cols = parseCSVRow(lines[i]);
-            // cols: [Kota/Kabupaten, Tanggal, Imsak, Subuh, Terbit, Dhuha, Dzuhur, Ashar, Maghrib, Isya]
-            if (cols[0] === matchedCity.city && cols[1].includes(todayStr)) {
+        // Find today's entry — keys are "Hari, DD/MM/YYYY"
+        const todayStr = `${day}/${month}/${year}`;
+        for (const [tanggal, times] of Object.entries(cityData)) {
+            if (tanggal.includes(todayStr)) {
                 return {
-                    imsak: cols[2],
-                    fajr: cols[3],
-                    syuruq: cols[4],
-                    dhuha: cols[5],
-                    dhuhr: cols[6],
-                    asr: cols[7],
-                    maghrib: cols[8],
-                    isha: cols[9]
+                    imsak: times[0],
+                    fajr: times[1],
+                    syuruq: times[2],
+                    dhuha: times[3],
+                    dhuhr: times[4],
+                    asr: times[5],
+                    maghrib: times[6],
+                    isha: times[7]
                 };
             }
         }
@@ -744,6 +732,131 @@
     }
 
     // ========================================
+    // CITY SEARCH
+    // ========================================
+
+    async function getCityIndex() {
+        if (cityIndex) return cityIndex;
+        const response = await fetch('kemenag/index.json');
+        if (!response.ok) throw new Error('Gagal memuat daftar kota');
+        cityIndex = await response.json();
+        return cityIndex;
+    }
+
+    function initCitySearch() {
+        let debounceTimer = null;
+
+        elements.cityInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => filterCities(elements.cityInput.value), 150);
+        });
+
+        elements.cityInput.addEventListener('focus', () => {
+            if (elements.cityInput.value.length >= 2) {
+                filterCities(elements.cityInput.value);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!elements.citySearch.contains(e.target)) {
+                elements.cityResults.classList.add('hidden');
+            }
+        });
+
+        elements.btnGps.addEventListener('click', async () => {
+            localStorage.removeItem('selectedCity');
+            elements.cityInput.value = '';
+            elements.cityResults.classList.add('hidden');
+            hideElement(elements.prayerTimes);
+            hideElement(elements.error);
+            showElement(elements.loading);
+            await loadPrayerTimesByGPS();
+        });
+    }
+
+    async function filterCities(query) {
+        if (query.length < 2) {
+            elements.cityResults.classList.add('hidden');
+            return;
+        }
+
+        const index = await getCityIndex();
+        const q = query.toLowerCase();
+        const matches = Object.keys(index)
+            .filter(city => city.toLowerCase().includes(q))
+            .slice(0, 8);
+
+        if (matches.length === 0) {
+            elements.cityResults.classList.add('hidden');
+            return;
+        }
+
+        elements.cityResults.innerHTML = matches
+            .map(city => `<div class="city-result-item" data-city="${city}">${city}</div>`)
+            .join('');
+        elements.cityResults.classList.remove('hidden');
+
+        elements.cityResults.querySelectorAll('.city-result-item').forEach(item => {
+            item.addEventListener('click', () => selectCity(item.dataset.city));
+        });
+    }
+
+    async function selectCity(cityName) {
+        elements.cityResults.classList.add('hidden');
+        elements.cityInput.value = cityName;
+
+        const index = await getCityIndex();
+        const info = index[cityName];
+        if (!info) return;
+
+        localStorage.setItem('selectedCity', cityName);
+
+        hideElement(elements.error);
+        hideElement(elements.prayerTimes);
+        showElement(elements.loading);
+
+        try {
+            const matchedCity = { city: cityName, file: info.file };
+            elements.location.textContent = cityName;
+            const times = await fetchPrayerTimesFromJSON(matchedCity);
+            displayPrayerTimes(times);
+        } catch (error) {
+            showError(error.message);
+        }
+
+        hideElement(elements.loading);
+    }
+
+    async function loadPrayerTimesByGPS() {
+        try {
+            const location = await getLocation();
+            userLocation = location;
+
+            const address = await getNominatimAddress(location.lat, location.lng);
+
+            let times;
+
+            if (address.country_code === 'id') {
+                const matchedCity = await matchCityToCSV(address);
+                if (!matchedCity) {
+                    throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
+                }
+                elements.location.textContent = matchedCity.city;
+                times = await fetchPrayerTimesFromJSON(matchedCity);
+            } else {
+                elements.location.textContent = getDisplayName(address);
+                times = await fetchPrayerTimes(location.lat, location.lng);
+            }
+
+            displayPrayerTimes(times);
+            hideElement(elements.loading);
+        } catch (error) {
+            hideElement(elements.loading);
+            showError(error.message);
+        }
+    }
+
+    // ========================================
     // EVENT LISTENERS
     // ========================================
 
@@ -773,6 +886,7 @@
 
     async function init() {
         initTheme();
+        initCitySearch();
 
         updateClock();
         setInterval(updateClock, 1000);
@@ -780,34 +894,14 @@
         elements.location.textContent = DEFAULT_LOCATION_LABEL;
         hideElement(elements.error);
 
-        try {
-            const location = await getLocation();
-            userLocation = location;
-
-            const address = await getNominatimAddress(location.lat, location.lng);
-
-            let times;
-
-            if (address.country_code === 'id') {
-                // Indonesia → use Kemenag CSV
-                const matchedCity = await matchCityToCSV(address);
-                if (!matchedCity) {
-                    throw new Error('Kota Anda tidak ditemukan dalam database Kemenag. Pastikan lokasi GPS akurat.');
-                }
-                elements.location.textContent = matchedCity.city;
-                times = await fetchPrayerTimesFromCSV(matchedCity);
-            } else {
-                // Outside Indonesia → fallback to Aladhan API
-                elements.location.textContent = getDisplayName(address);
-                times = await fetchPrayerTimes(location.lat, location.lng);
-            }
-
-            displayPrayerTimes(times);
-            hideLoading();
-        } catch (error) {
-            hideLoading();
-            showError(error.message);
+        // Check for saved city selection
+        const savedCity = localStorage.getItem('selectedCity');
+        if (savedCity) {
+            await selectCity(savedCity);
+            return;
         }
+
+        await loadPrayerTimesByGPS();
     }
 
     init();
