@@ -215,9 +215,11 @@ body {
     border: 1px solid var(--card-border);
     border-radius: 0.75rem;
     box-shadow: 0 12px 24px var(--card-shadow);
-    z-index: 100;
+    z-index: 1000;
     overflow: hidden;
     backdrop-filter: blur(8px);
+    max-height: 50vh;
+    overflow-y: auto;
 }
 
 .city-result-item {
