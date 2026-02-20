@@ -780,7 +780,7 @@
         const q = query.toLowerCase();
         const matches = Object.keys(index)
             .filter(city => city.toLowerCase().includes(q))
-            .slice(0, 8);
+            .slice(0, 5);
 
         if (matches.length === 0) {
             elements.cityResults.classList.add('hidden');
