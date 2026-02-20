@@ -748,12 +748,12 @@
 
         elements.cityInput.addEventListener('input', () => {
             clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => filterCities(elements.location.textContent), 150);
+            debounceTimer = setTimeout(() => filterCities(elements.cityInput.value), 150);
         });
 
         elements.cityInput.addEventListener('focus', () => {
-            if (elements.location.textContent.length >= 2) {
-                filterCities(elements.location.textContent);
+            if (elements.cityInput.value.length >= 2) {
+                filterCities(elements.cityInput.value);
             }
         });
 
