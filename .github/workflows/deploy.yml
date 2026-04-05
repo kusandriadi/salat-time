@@ -30,8 +30,8 @@ jobs:
       - name: Prepare deploy directory
         run: |
           mkdir -p _site
-          cp index.html robots.txt _site/
-          cp -r css js node_modules _site/
+          cp index.html robots.txt manifest.json sw.js _site/
+          cp -r css js icons node_modules _site/
           mkdir -p _site/kemenag
           cp kemenag/index.json _site/kemenag/
           for year in kemenag/*/; do
