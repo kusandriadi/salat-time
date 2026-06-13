@@ -27,6 +27,9 @@ jobs:
       - name: Build JSON from CSV
         run: bun run scripts/build-json.js
 
+      - name: Build REST API
+        run: bun run scripts/build-api.js
+
       - name: Prepare deploy directory
         run: |
           mkdir -p _site
@@ -34,6 +37,7 @@ jobs:
           cp -r css js icons node_modules _site/
           mkdir -p _site/kemenag
           cp kemenag/index.json _site/kemenag/
+          cp -r kemenag/api _site/kemenag/
           for year in kemenag/*/; do
             if [ -d "$year/json" ]; then
               yearname=$(basename "$year")

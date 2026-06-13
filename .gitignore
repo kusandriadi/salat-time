@@ -15,3 +15,6 @@ node_modules/
 *.njsproj
 *.sln
 *.sw?
+
+# Generated REST API (rebuilt from kemenag/ on deploy — see scripts/build-api.js)
+kemenag/api/

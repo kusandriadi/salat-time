@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "build:json": "bun run scripts/build-json.js",
+    "build:api": "bun run scripts/build-api.js",
+    "build": "bun run scripts/build-json.js && bun run scripts/build-api.js"
+  },
   "dependencies": {
     "qibla-direction": "^1.0.0"
   }

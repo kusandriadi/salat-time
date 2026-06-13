@@ -1,1553 +1,2070 @@
 {
   "Kab. Aceh Barat": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0101"
   },
   "Kab. Aceh Barat Daya": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0102"
   },
   "Kab. Aceh Besar": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0103"
   },
   "Kab. Aceh Jaya": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0104"
   },
   "Kab. Aceh Selatan": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0105"
   },
   "Kab. Aceh Singkil": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0106"
   },
   "Kab. Aceh Tamiang": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0107"
   },
   "Kab. Aceh Tengah": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0108"
   },
   "Kab. Aceh Tenggara": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0109"
   },
   "Kab. Aceh Timur": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0110"
   },
   "Kab. Aceh Utara": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0111"
   },
   "Kab. Bener Meriah": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0112"
   },
   "Kab. Bireuen": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0113"
   },
   "Kab. Gayo Lues": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0114"
   },
   "Kab. Nagan Raya": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0115"
   },
   "Kab. Pidie": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0116"
   },
   "Kab. Pidie Jaya": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0117"
   },
   "Kab. Simeulue": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0118"
   },
   "Kota Banda Aceh": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0119"
   },
   "Kota Langsa": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0120"
   },
   "Kota Lhokseumawe": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0121"
   },
   "Kota Sabang": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0122"
   },
   "Kota Subulussalam": {
-    "file": "kemenag_aceh.csv"
+    "file": "kemenag_aceh.csv",
+    "code": "0123"
   },
   "Kab. Badung": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0201"
   },
   "Kab. Bangli": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0202"
   },
   "Kab. Buleleng": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0203"
   },
   "Kab. Gianyar": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0204"
   },
   "Kab. Jembrana": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0205"
   },
   "Kab. Karangasem": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0206"
   },
   "Kab. Klungkung": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0207"
   },
   "Kab. Tabanan": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0208"
   },
   "Kota Denpasar": {
-    "file": "kemenag_bali.csv"
+    "file": "kemenag_bali.csv",
+    "code": "0209"
   },
   "Kab. Lebak": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0301"
   },
   "Kab. Pandeglang": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0302"
   },
   "Kab. Serang": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0303"
   },
   "Kab. Tangerang": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0304"
   },
   "Kota Cilegon": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0305"
   },
   "Kota Serang": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0306"
   },
   "Kota Tangerang": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0307"
   },
   "Kota Tangerang Selatan": {
-    "file": "kemenag_banten.csv"
+    "file": "kemenag_banten.csv",
+    "code": "0308"
   },
   "Kab. Bengkulu Selatan": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0401"
   },
   "Kab. Bengkulu Tengah": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0402"
   },
   "Kab. Bengkulu Utara": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0403"
   },
   "Kab. Kaur": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0404"
   },
   "Kab. Kepahiang": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0405"
   },
   "Kab. Lebong": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0406"
   },
   "Kab. Mukomuko": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0407"
   },
   "Kab. Rejang Lebong": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0408"
   },
   "Kab. Seluma": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0409"
   },
   "Kota Bengkulu": {
-    "file": "kemenag_bengkulu.csv"
+    "file": "kemenag_bengkulu.csv",
+    "code": "0410"
   },
   "Kab. Bantul": {
-    "file": "kemenag_di_yogyakarta.csv"
+    "file": "kemenag_di_yogyakarta.csv",
+    "code": "0501"
   },
   "Kab. Gunungkidul": {
-    "file": "kemenag_di_yogyakarta.csv"
+    "file": "kemenag_di_yogyakarta.csv",
+    "code": "0502"
   },
   "Kab. Kulon Progo": {
-    "file": "kemenag_di_yogyakarta.csv"
+    "file": "kemenag_di_yogyakarta.csv",
+    "code": "0503"
   },
   "Kab. Sleman": {
-    "file": "kemenag_di_yogyakarta.csv"
+    "file": "kemenag_di_yogyakarta.csv",
+    "code": "0504"
   },
   "Kota Yogyakarta": {
-    "file": "kemenag_di_yogyakarta.csv"
+    "file": "kemenag_di_yogyakarta.csv",
+    "code": "0505"
   },
   "Kab. Kepulauan Seribu": {
-    "file": "kemenag_dki_jakarta.csv"
+    "file": "kemenag_dki_jakarta.csv",
+    "code": "0601"
   },
   "Kota Jakarta": {
-    "file": "kemenag_dki_jakarta.csv"
+    "file": "kemenag_dki_jakarta.csv",
+    "code": "0602"
   },
   "Kab. Boalemo": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0701"
   },
   "Kab. Bone Bolango": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0702"
   },
   "Kab. Gorontalo": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0703"
   },
   "Kab. Gorontalo Utara": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0704"
   },
   "Kab. Pohuwato": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0705"
   },
   "Kota Gorontalo": {
-    "file": "kemenag_gorontalo.csv"
+    "file": "kemenag_gorontalo.csv",
+    "code": "0706"
   },
   "Kab. Batanghari": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0801"
   },
   "Kab. Bungo": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0802"
   },
   "Kab. Kerinci": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0803"
   },
   "Kab. Merangin": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0804"
   },
   "Kab. Muaro Jambi": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0805"
   },
   "Kab. Sarolangun": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0806"
   },
   "Kab. Tanjung Jabung Barat": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0807"
   },
   "Kab. Tanjung Jabung Timur": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0808"
   },
   "Kab. Tebo": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0809"
   },
   "Kota Jambi": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0810"
   },
   "Kota Sungai Penuh": {
-    "file": "kemenag_jambi.csv"
+    "file": "kemenag_jambi.csv",
+    "code": "0811"
   },
   "Kab. Bandung": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0901"
   },
   "Kab. Bandung Barat": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0902"
   },
   "Kab. Bekasi": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0903"
   },
   "Kab. Bogor": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0904"
   },
   "Kab. Ciamis": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0905"
   },
   "Kab. Cianjur": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0906"
   },
   "Kab. Cirebon": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0907"
   },
   "Kab. Garut": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0908"
   },
   "Kab. Indramayu": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0909"
   },
   "Kab. Karawang": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0910"
   },
   "Kab. Kuningan": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0911"
   },
   "Kab. Majalengka": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0912"
   },
   "Kab. Pangandaran": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0913"
   },
   "Kab. Purwakarta": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0914"
   },
   "Kab. Subang": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0915"
   },
   "Kab. Sukabumi": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0916"
   },
   "Kab. Sumedang": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0917"
   },
   "Kab. Tasikmalaya": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0918"
   },
   "Kota Bandung": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0919"
   },
   "Kota Banjar": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0920"
   },
   "Kota Bekasi": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0921"
   },
   "Kota Bogor": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0922"
   },
   "Kota Cimahi": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0923"
   },
   "Kota Cirebon": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0924"
   },
   "Kota Depok": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0925"
   },
   "Kota Sukabumi": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0926"
   },
   "Kota Tasikmalaya": {
-    "file": "kemenag_jawa_barat.csv"
+    "file": "kemenag_jawa_barat.csv",
+    "code": "0927"
   },
   "Kab. Banjarnegara": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1001"
   },
   "Kab. Banyumas": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1002"
   },
   "Kab. Batang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1003"
   },
   "Kab. Blora": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1004"
   },
   "Kab. Boyolali": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1005"
   },
   "Kab. Brebes": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1006"
   },
   "Kab. Cilacap": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1007"
   },
   "Kab. Demak": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1008"
   },
   "Kab. Grobogan": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1009"
   },
   "Kab. Jepara": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1010"
   },
   "Kab. Karanganyar": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1011"
   },
   "Kab. Kebumen": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1012"
   },
   "Kab. Kendal": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1013"
   },
   "Kab. Klaten": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1014"
   },
   "Kab. Kudus": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1015"
   },
   "Kab. Magelang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1016"
   },
   "Kab. Pati": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1017"
   },
   "Kab. Pekalongan": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1018"
   },
   "Kab. Pemalang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1019"
   },
   "Kab. Purbalingga": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1020"
   },
   "Kab. Purworejo": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1021"
   },
   "Kab. Rembang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1022"
   },
   "Kab. Semarang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1023"
   },
   "Kab. Sragen": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1024"
   },
   "Kab. Sukoharjo": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1025"
   },
   "Kab. Tegal": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1026"
   },
   "Kab. Temanggung": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1027"
   },
   "Kab. Wonogiri": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1028"
   },
   "Kab. Wonosobo": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1029"
   },
   "Kota Magelang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1030"
   },
   "Kota Pekalongan": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1031"
   },
   "Kota Salatiga": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1032"
   },
   "Kota Semarang": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1033"
   },
   "Kota Surakarta": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1034"
   },
   "Kota Tegal": {
-    "file": "kemenag_jawa_tengah.csv"
+    "file": "kemenag_jawa_tengah.csv",
+    "code": "1035"
   },
   "Kab. Bangkalan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1101"
   },
   "Kab. Banyuwangi": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1102"
   },
   "Kab. Blitar": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1103"
   },
   "Kab. Bojonegoro": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1104"
   },
   "Kab. Bondowoso": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1105"
   },
   "Kab. Gresik": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1106"
   },
   "Kab. Jember": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1107"
   },
   "Kab. Jombang": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1108"
   },
   "Kab. Kediri": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1109"
   },
   "Kab. Lamongan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1110"
   },
   "Kab. Lumajang": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1111"
   },
   "Kab. Madiun": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1112"
   },
   "Kab. Magetan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1113"
   },
   "Kab. Malang": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1114"
   },
   "Kab. Mojokerto": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1115"
   },
   "Kab. Nganjuk": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1116"
   },
   "Kab. Ngawi": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1117"
   },
   "Kab. Pacitan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1118"
   },
   "Kab. Pamekasan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1119"
   },
   "Kab. Pasuruan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1120"
   },
   "Kab. Ponorogo": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1121"
   },
   "Kab. Probolinggo": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1122"
   },
   "Kab. Sampang": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1123"
   },
   "Kab. Sidoarjo": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1124"
   },
   "Kab. Situbondo": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1125"
   },
   "Kab. Sumenep": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1126"
   },
   "Kab. Trenggalek": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1127"
   },
   "Kab. Tuban": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1128"
   },
   "Kab. Tulungagung": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1129"
   },
   "Kota Batu": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1130"
   },
   "Kota Blitar": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1131"
   },
   "Kota Kediri": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1132"
   },
   "Kota Madiun": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1133"
   },
   "Kota Malang": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1134"
   },
   "Kota Mojokerto": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1135"
   },
   "Kota Pasuruan": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1136"
   },
   "Kota Probolinggo": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1137"
   },
   "Kota Surabaya": {
-    "file": "kemenag_jawa_timur.csv"
+    "file": "kemenag_jawa_timur.csv",
+    "code": "1138"
   },
   "Kab. Bengkayang": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1201"
   },
   "Kab. Kapuas Hulu": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1202"
   },
   "Kab. Kayong Utara": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1203"
   },
   "Kab. Ketapang": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1204"
   },
   "Kab. Kubu Raya": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1205"
   },
   "Kab. Landak": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1206"
   },
   "Kab. Melawi": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1207"
   },
   "Kab. Mempawah": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1208"
   },
   "Kab. Sambas": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1209"
   },
   "Kab. Sanggau": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1210"
   },
   "Kab. Sekadau": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1211"
   },
   "Kab. Sintang": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1212"
   },
   "Kota Pontianak": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1213"
   },
   "Kota Singkawang": {
-    "file": "kemenag_kalimantan_barat.csv"
+    "file": "kemenag_kalimantan_barat.csv",
+    "code": "1214"
   },
   "Kab. Balangan": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1301"
   },
   "Kab. Banjar": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1302"
   },
   "Kab. Barito Kuala": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1303"
   },
   "Kab. Hulu Sungai Selatan": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1304"
   },
   "Kab. Hulu Sungai Tengah": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1305"
   },
   "Kab. Hulu Sungai Utara": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1306"
   },
   "Kab. Kotabaru": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1307"
   },
   "Kab. Tabalong": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1308"
   },
   "Kab. Tanah Bumbu": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1309"
   },
   "Kab. Tanah Laut": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1310"
   },
   "Kab. Tapin": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1311"
   },
   "Kota Banjarbaru": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1312"
   },
   "Kota Banjarmasin": {
-    "file": "kemenag_kalimantan_selatan.csv"
+    "file": "kemenag_kalimantan_selatan.csv",
+    "code": "1313"
   },
   "Kab. Barito Selatan": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1401"
   },
   "Kab. Barito Timur": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1402"
   },
   "Kab. Barito Utara": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1403"
   },
   "Kab. Gunung Mas": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1404"
   },
   "Kab. Kapuas": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1405"
   },
   "Kab. Katingan": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1406"
   },
   "Kab. Kotawaringin Barat": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1407"
   },
   "Kab. Kotawaringin Timur": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1408"
   },
   "Kab. Lamandau": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1409"
   },
   "Kab. Murung Raya": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1410"
   },
   "Kab. Pulang Pisau": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1411"
   },
   "Kab. Seruyan": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1412"
   },
   "Kab. Sukamara": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1413"
   },
   "Kota Palangkaraya": {
-    "file": "kemenag_kalimantan_tengah.csv"
+    "file": "kemenag_kalimantan_tengah.csv",
+    "code": "1414"
   },
   "Kab. Berau": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1501"
   },
   "Kab. Kutai Barat": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1502"
   },
   "Kab. Kutai Kartanegara": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1503"
   },
   "Kab. Kutai Timur": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1504"
   },
   "Kab. Mahakam Ulu": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1505"
   },
   "Kab. Paser": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1506"
   },
   "Kab. Penajam Paser Utara": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1507"
   },
   "Kota Balikpapan": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1508"
   },
   "Kota Bontang": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1509"
   },
   "Kota Samarinda": {
-    "file": "kemenag_kalimantan_timur.csv"
+    "file": "kemenag_kalimantan_timur.csv",
+    "code": "1510"
   },
   "Kab. Bulungan": {
-    "file": "kemenag_kalimantan_utara.csv"
+    "file": "kemenag_kalimantan_utara.csv",
+    "code": "1601"
   },
   "Kab. Malinau": {
-    "file": "kemenag_kalimantan_utara.csv"
+    "file": "kemenag_kalimantan_utara.csv",
+    "code": "1602"
   },
   "Kab. Nunukan": {
-    "file": "kemenag_kalimantan_utara.csv"
+    "file": "kemenag_kalimantan_utara.csv",
+    "code": "1603"
   },
   "Kab. Tana Tidung": {
-    "file": "kemenag_kalimantan_utara.csv"
+    "file": "kemenag_kalimantan_utara.csv",
+    "code": "1604"
   },
   "Kota Tarakan": {
-    "file": "kemenag_kalimantan_utara.csv"
+    "file": "kemenag_kalimantan_utara.csv",
+    "code": "1605"
   },
   "Kab. Bangka": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1701"
   },
   "Kab. Bangka Barat": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1702"
   },
   "Kab. Bangka Selatan": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1703"
   },
   "Kab. Bangka Tengah": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1704"
   },
   "Kab. Belitung": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1705"
   },
   "Kab. Belitung Timur": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1706"
   },
   "Kota Pangkal Pinang": {
-    "file": "kemenag_kepulauan_bangka_belitung.csv"
+    "file": "kemenag_kepulauan_bangka_belitung.csv",
+    "code": "1707"
   },
   "Kab. Bintan": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1801"
   },
   "Kab. Karimun": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1802"
   },
   "Kab. Kepulauan Anambas": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1803"
   },
   "Kab. Lingga": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1804"
   },
   "Kab. Natuna": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1805"
   },
   "Kota Batam": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1806"
   },
   "Kota Tanjung Pinang": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1807"
   },
   "Pekajang Kab. Lingga": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1808"
   },
   "Pulau Laut Kab. Natuna": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1809"
   },
   "Pulau Midai Kab. Natuna": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1810"
   },
   "Pulau Serasan Kab. Natuna": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1811"
   },
   "Pulau Tambelan Kab. Bintan": {
-    "file": "kemenag_kepulauan_riau.csv"
+    "file": "kemenag_kepulauan_riau.csv",
+    "code": "1812"
   },
   "Kab. Lampung Barat": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1901"
   },
   "Kab. Lampung Selatan": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1902"
   },
   "Kab. Lampung Tengah": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1903"
   },
   "Kab. Lampung Timur": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1904"
   },
   "Kab. Lampung Utara": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1905"
   },
   "Kab. Mesuji": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1906"
   },
   "Kab. Pesawaran": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1907"
   },
   "Kab. Pesisir Barat": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1908"
   },
   "Kab. Pringsewu": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1909"
   },
   "Kab. Tanggamus": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1910"
   },
   "Kab. Tulang Bawang": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1911"
   },
   "Kab. Tulang Bawang Barat": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1912"
   },
   "Kab. Way Kanan": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1913"
   },
   "Kota Bandar Lampung": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1914"
   },
   "Kota Metro": {
-    "file": "kemenag_lampung.csv"
+    "file": "kemenag_lampung.csv",
+    "code": "1915"
   },
   "Kab. Buru": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2001"
   },
   "Kab. Buru Selatan": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2002"
   },
   "Kab. Kepulauan Aru": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2003"
   },
   "Kab. Maluku Barat Daya": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2004"
   },
   "Kab. Maluku Tengah": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2005"
   },
   "Kab. Maluku Tenggara": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2006"
   },
   "Kab. Maluku Tenggara Barat": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2007"
   },
   "Kab. Seram Bagian Barat": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2008"
   },
   "Kab. Seram Bagian Timur": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2009"
   },
   "Kota Ambon": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2010"
   },
   "Kota Tual": {
-    "file": "kemenag_maluku.csv"
+    "file": "kemenag_maluku.csv",
+    "code": "2011"
   },
   "Kab. Halmahera Barat": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2101"
   },
   "Kab. Halmahera Selatan": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2102"
   },
   "Kab. Halmahera Tengah": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2103"
   },
   "Kab. Halmahera Timur": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2104"
   },
   "Kab. Halmahera Utara": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2105"
   },
   "Kab. Kepulauan Sula": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2106"
   },
   "Kab. Pulau Morotai": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2107"
   },
   "Kab. Pulau Taliabu": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2108"
   },
   "Kota Sofifi": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2109"
   },
   "Kota Ternate": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2110"
   },
   "Kota Tidore Kepulauan": {
-    "file": "kemenag_maluku_utara.csv"
+    "file": "kemenag_maluku_utara.csv",
+    "code": "2111"
   },
   "Kab. Bima": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2201"
   },
   "Kab. Dompu": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2202"
   },
   "Kab. Lombok Barat": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2203"
   },
   "Kab. Lombok Tengah": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2204"
   },
   "Kab. Lombok Timur": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2205"
   },
   "Kab. Lombok Utara": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2206"
   },
   "Kab. Sumbawa": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2207"
   },
   "Kab. Sumbawa Barat": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2208"
   },
   "Kota Bima": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2209"
   },
   "Kota Mataram": {
-    "file": "kemenag_nusa_tenggara_barat.csv"
+    "file": "kemenag_nusa_tenggara_barat.csv",
+    "code": "2210"
   },
   "Kab. Alor": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2301"
   },
   "Kab. Belu": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2302"
   },
   "Kab. Ende": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2303"
   },
   "Kab. Flores Timur": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2304"
   },
   "Kab. Kupang": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2305"
   },
   "Kab. Lembata": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2306"
   },
   "Kab. Malaka": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2307"
   },
   "Kab. Manggarai": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2308"
   },
   "Kab. Manggarai Barat": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2309"
   },
   "Kab. Manggarai Timur": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2310"
   },
   "Kab. Nagekeo": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2311"
   },
   "Kab. Ngada": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2312"
   },
   "Kab. Rote Ndao": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2313"
   },
   "Kab. Sabu Raijua": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2314"
   },
   "Kab. Sikka": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2315"
   },
   "Kab. Sumba Barat": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2316"
   },
   "Kab. Sumba Barat Daya": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2317"
   },
   "Kab. Sumba Tengah": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2318"
   },
   "Kab. Sumba Timur": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2319"
   },
   "Kab. Timor Tengah Selatan": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2320"
   },
   "Kab. Timor Tengah Utara": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2321"
   },
   "Kota Kupang": {
-    "file": "kemenag_nusa_tenggara_timur.csv"
+    "file": "kemenag_nusa_tenggara_timur.csv",
+    "code": "2322"
   },
   "Kab. Biak Numfor": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2401"
   },
   "Kab. Jayapura": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2402"
   },
   "Kab. Keerom": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2403"
   },
   "Kab. Kepulauan Yapen": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2404"
   },
   "Kab. Mamberamo Raya": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2405"
   },
   "Kab. Sarmi": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2406"
   },
   "Kab. Supiori": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2407"
   },
   "Kab. Waropen": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2408"
   },
   "Kab. Yapen Waropen": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2409"
   },
   "Kota Jayapura": {
-    "file": "kemenag_papua.csv"
+    "file": "kemenag_papua.csv",
+    "code": "2410"
   },
   "Kab. Fakfak": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2501"
   },
   "Kab. Kaimana": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2502"
   },
   "Kab. Manokwari": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2503"
   },
   "Kab. Manokwari Selatan": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2504"
   },
   "Kab. Pegunungan Arfak": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2505"
   },
   "Kab. Teluk Bintuni": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2506"
   },
   "Kab. Teluk Wondama": {
-    "file": "kemenag_papua_barat.csv"
+    "file": "kemenag_papua_barat.csv",
+    "code": "2507"
   },
   "Kab. Maybrat": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2601"
   },
   "Kab. Raja Ampat": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2602"
   },
   "Kab. Sorong": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2603"
   },
   "Kab. Sorong Selatan": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2604"
   },
   "Kab. Tambrauw": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2605"
   },
   "Kota Sorong": {
-    "file": "kemenag_papua_barat_daya.csv"
+    "file": "kemenag_papua_barat_daya.csv",
+    "code": "2606"
   },
   "Kab. Jayawijaya": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2701"
   },
   "Kab. Lanny Jaya": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2702"
   },
   "Kab. Mamberamo Tengah": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2703"
   },
   "Kab. Nduga": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2704"
   },
   "Kab. Pegunungan Bintang": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2705"
   },
   "Kab. Tolikara": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2706"
   },
   "Kab. Yahukimo": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2707"
   },
   "Kab. Yalimo": {
-    "file": "kemenag_papua_pegunungan.csv"
+    "file": "kemenag_papua_pegunungan.csv",
+    "code": "2708"
   },
   "Kab. Asmat": {
-    "file": "kemenag_papua_selatan.csv"
+    "file": "kemenag_papua_selatan.csv",
+    "code": "2801"
   },
   "Kab. Boven Digoel": {
-    "file": "kemenag_papua_selatan.csv"
+    "file": "kemenag_papua_selatan.csv",
+    "code": "2802"
   },
   "Kab. Mappi": {
-    "file": "kemenag_papua_selatan.csv"
+    "file": "kemenag_papua_selatan.csv",
+    "code": "2803"
   },
   "Kab. Merauke": {
-    "file": "kemenag_papua_selatan.csv"
+    "file": "kemenag_papua_selatan.csv",
+    "code": "2804"
   },
   "Kab. Deiyai": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2901"
   },
   "Kab. Dogiyai": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2902"
   },
   "Kab. Intan Jaya": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2903"
   },
   "Kab. Mimika": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2904"
   },
   "Kab. Nabire": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2905"
   },
   "Kab. Paniai": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2906"
   },
   "Kab. Puncak": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2907"
   },
   "Kab. Puncak Jaya": {
-    "file": "kemenag_papua_tengah.csv"
+    "file": "kemenag_papua_tengah.csv",
+    "code": "2908"
   },
   "Kab. Bengkalis": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3001"
   },
   "Kab. Indragiri Hilir": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3002"
   },
   "Kab. Indragiri Hulu": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3003"
   },
   "Kab. Kampar": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3004"
   },
   "Kab. Kepulauan Meranti": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3005"
   },
   "Kab. Kuantan Singingi": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3006"
   },
   "Kab. Pelalawan": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3007"
   },
   "Kab. Rokan Hilir": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3008"
   },
   "Kab. Rokan Hulu": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3009"
   },
   "Kab. Siak": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3010"
   },
   "Kota Dumai": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3011"
   },
   "Kota Pekanbaru": {
-    "file": "kemenag_riau.csv"
+    "file": "kemenag_riau.csv",
+    "code": "3012"
   },
   "Kab. Majene": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3101"
   },
   "Kab. Mamasa": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3102"
   },
   "Kab. Mamuju": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3103"
   },
   "Kab. Mamuju Tengah": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3104"
   },
   "Kab. Mamuju Utara": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3105"
   },
   "Kab. Polewali Mandar": {
-    "file": "kemenag_sulawesi_barat.csv"
+    "file": "kemenag_sulawesi_barat.csv",
+    "code": "3106"
   },
   "Kab. Bantaeng": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3201"
   },
   "Kab. Barru": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3202"
   },
   "Kab. Bone": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3203"
   },
   "Kab. Bulukumba": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3204"
   },
   "Kab. Enrekang": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3205"
   },
   "Kab. Gowa": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3206"
   },
   "Kab. Jeneponto": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3207"
   },
   "Kab. Kepulauan Selayar": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3208"
   },
   "Kab. Luwu": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3209"
   },
   "Kab. Luwu Timur": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3210"
   },
   "Kab. Luwu Utara": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3211"
   },
   "Kab. Maros": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3212"
   },
   "Kab. Pangkajene Dan Kepulauan": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3213"
   },
   "Kab. Pinrang": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3214"
   },
   "Kab. Sidenreng Rappang": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3215"
   },
   "Kab. Sinjai": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3216"
   },
   "Kab. Soppeng": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3217"
   },
   "Kab. Takalar": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3218"
   },
   "Kab. Tana Toraja": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3219"
   },
   "Kab. Toraja Utara": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3220"
   },
   "Kab. Wajo": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3221"
   },
   "Kota Makassar": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3222"
   },
   "Kota Palopo": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3223"
   },
   "Kota Parepare": {
-    "file": "kemenag_sulawesi_selatan.csv"
+    "file": "kemenag_sulawesi_selatan.csv",
+    "code": "3224"
   },
   "Kab. Banggai": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3301"
   },
   "Kab. Banggai Kepulauan": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3302"
   },
   "Kab. Banggai Laut": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3303"
   },
   "Kab. Buol": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3304"
   },
   "Kab. Donggala": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3305"
   },
   "Kab. Morowali": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3306"
   },
   "Kab. Morowali Utara": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3307"
   },
   "Kab. Parigi Moutong": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3308"
   },
   "Kab. Poso": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3309"
   },
   "Kab. Sigi": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3310"
   },
   "Kab. Tojo Una-una": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3311"
   },
   "Kab. Toli-toli": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3312"
   },
   "Kota Palu": {
-    "file": "kemenag_sulawesi_tengah.csv"
+    "file": "kemenag_sulawesi_tengah.csv",
+    "code": "3313"
   },
   "Kab. Bombana": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3401"
   },
   "Kab. Buton": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3402"
   },
   "Kab. Buton Selatan": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3403"
   },
   "Kab. Buton Tengah": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3404"
   },
   "Kab. Buton Utara": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3405"
   },
   "Kab. Kolaka": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3406"
   },
   "Kab. Kolaka Timur": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3407"
   },
   "Kab. Kolaka Utara": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3408"
   },
   "Kab. Konawe": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3409"
   },
   "Kab. Konawe Kepulauan": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3410"
   },
   "Kab. Konawe Selatan": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3411"
   },
   "Kab. Konawe Utara": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3412"
   },
   "Kab. Muna": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3413"
   },
   "Kab. Muna Barat": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3414"
   },
   "Kab. Wakatobi": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3415"
   },
   "Kota Bau-bau": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3416"
   },
   "Kota Kendari": {
-    "file": "kemenag_sulawesi_tenggara.csv"
+    "file": "kemenag_sulawesi_tenggara.csv",
+    "code": "3417"
   },
   "Kab. Bolaang Mongondow": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3501"
   },
   "Kab. Bolaang Mongondow Selatan": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3502"
   },
   "Kab. Bolaang Mongondow Timur": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3503"
   },
   "Kab. Bolaang Mongondow Utara": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3504"
   },
   "Kab. Kepulauan Sangihe": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3505"
   },
   "Kab. Kepulauan Siau Tagulandang Biaro": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3506"
   },
   "Kab. Kepulauan Talaud": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3507"
   },
   "Kab. Minahasa": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3508"
   },
   "Kab. Minahasa Selatan": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3509"
   },
   "Kab. Minahasa Tenggara": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3510"
   },
   "Kab. Minahasa Utara": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3511"
   },
   "Kota Bitung": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3512"
   },
   "Kota Kotamobagu": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3513"
   },
   "Kota Manado": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3514"
   },
   "Kota Tomohon": {
-    "file": "kemenag_sulawesi_utara.csv"
+    "file": "kemenag_sulawesi_utara.csv",
+    "code": "3515"
   },
   "Kab. Agam": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3601"
   },
   "Kab. Dharmasraya": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3602"
   },
   "Kab. Kepulauan Mentawai": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3603"
   },
   "Kab. Lima Puluh Kota": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3604"
   },
   "Kab. Padang Pariaman": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3605"
   },
   "Kab. Pasaman": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3606"
   },
   "Kab. Pasaman Barat": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3607"
   },
   "Kab. Pesisir Selatan": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3608"
   },
   "Kab. Sijunjung": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3609"
   },
   "Kab. Solok": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3610"
   },
   "Kab. Solok Selatan": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3611"
   },
   "Kab. Tanah Datar": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3612"
   },
   "Kota Bukittinggi": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3613"
   },
   "Kota Padang": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3614"
   },
   "Kota Padangpanjang": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3615"
   },
   "Kota Pariaman": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3616"
   },
   "Kota Payakumbuh": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3617"
   },
   "Kota Sawahlunto": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3618"
   },
   "Kota Solok": {
-    "file": "kemenag_sumatera_barat.csv"
+    "file": "kemenag_sumatera_barat.csv",
+    "code": "3619"
   },
   "Kab. Banyuasin": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3701"
   },
   "Kab. Empat Lawang": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3702"
   },
   "Kab. Lahat": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3703"
   },
   "Kab. Muara Enim": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3704"
   },
   "Kab. Musi Banyuasin": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3705"
   },
   "Kab. Musi Rawas": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3706"
   },
   "Kab. Musi Rawas Utara": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3707"
   },
   "Kab. Ogan Ilir": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3708"
   },
   "Kab. Ogan Komering Ilir": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3709"
   },
   "Kab. Ogan Komering Ulu": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3710"
   },
   "Kab. Ogan Komering Ulu Selatan": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3711"
   },
   "Kab. Ogan Komering Ulu Timur": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3712"
   },
   "Kab. Penukal Abab Lematang Ilir": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3713"
   },
   "Kota Lubuklinggau": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3714"
   },
   "Kota Pagar Alam": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3715"
   },
   "Kota Palembang": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3716"
   },
   "Kota Prabumulih": {
-    "file": "kemenag_sumatera_selatan.csv"
+    "file": "kemenag_sumatera_selatan.csv",
+    "code": "3717"
   },
   "Kab. Asahan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3801"
   },
   "Kab. Batubara": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3802"
   },
   "Kab. Dairi": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3803"
   },
   "Kab. Deli Serdang": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3804"
   },
   "Kab. Humbang Hasundutan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3805"
   },
   "Kab. Karo": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3806"
   },
   "Kab. Labuhanbatu": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3807"
   },
   "Kab. Labuhanbatu Selatan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3808"
   },
   "Kab. Labuhanbatu Utara": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3809"
   },
   "Kab. Langkat": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3810"
   },
   "Kab. Mandailing Natal": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3811"
   },
   "Kab. Nias": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3812"
   },
   "Kab. Nias Barat": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3813"
   },
   "Kab. Nias Selatan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3814"
   },
   "Kab. Nias Utara": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3815"
   },
   "Kab. Padang Lawas": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3816"
   },
   "Kab. Padang Lawas Utara": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3817"
   },
   "Kab. Pakpak Bharat": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3818"
   },
   "Kab. Samosir": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3819"
   },
   "Kab. Serdang Bedagai": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3820"
   },
   "Kab. Simalungun": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3821"
   },
   "Kab. Tapanuli Selatan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3822"
   },
   "Kab. Tapanuli Tengah": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3823"
   },
   "Kab. Tapanuli Utara": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3824"
   },
   "Kab. Toba Samosir": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3825"
   },
   "Kota Binjai": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3826"
   },
   "Kota Gunungsitoli": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3827"
   },
   "Kota Medan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3828"
   },
   "Kota Padangsidempuan": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3829"
   },
   "Kota Pematangsiantar": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3830"
   },
   "Kota Sibolga": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3831"
   },
   "Kota Tanjungbalai": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3832"
   },
   "Kota Tebing Tinggi": {
-    "file": "kemenag_sumatera_utara.csv"
+    "file": "kemenag_sumatera_utara.csv",
+    "code": "3833"
   }
 }
