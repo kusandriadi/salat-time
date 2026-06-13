@@ -1,6 +1,4 @@
-# Data Jadwal Shalat - Kemenag
-
-Sumber data: API myquran.com (dari bimasislam.kemenag.go.id)
+# Data Jadwal Shalat
 
 ## Ringkasan
 
