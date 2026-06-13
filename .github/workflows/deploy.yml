@@ -35,14 +35,14 @@ jobs:
           mkdir -p _site
           cp index.html robots.txt manifest.json sw.js _site/
           cp -r css js icons node_modules _site/
-          mkdir -p _site/kemenag
-          cp kemenag/index.json _site/kemenag/
-          cp -r kemenag/api _site/kemenag/
-          for year in kemenag/*/; do
+          mkdir -p _site/schedule
+          cp schedule/index.json _site/schedule/
+          cp -r schedule/api _site/schedule/
+          for year in schedule/*/; do
             if [ -d "$year/json" ]; then
               yearname=$(basename "$year")
-              mkdir -p "_site/kemenag/$yearname/json"
-              cp "$year/json/"*.json "_site/kemenag/$yearname/json/"
+              mkdir -p "_site/schedule/$yearname/json"
+              cp "$year/json/"*.json "_site/schedule/$yearname/json/"
             fi
           done
 

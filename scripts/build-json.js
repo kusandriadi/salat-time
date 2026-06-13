@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 
-const KEMENAG_DIR = join(import.meta.dir, "..", "kemenag");
+const SCHEDULE_DIR = join(import.meta.dir, "..", "schedule");
 const YEARS = ["2026", "2027", "2028"];
 
 function parseCSVRow(line) {
@@ -27,7 +27,7 @@ let totalFiles = 0;
 let totalCities = 0;
 
 for (const year of YEARS) {
-  const yearDir = join(KEMENAG_DIR, year);
+  const yearDir = join(SCHEDULE_DIR, year);
   if (!existsSync(yearDir)) {
     console.log(`Skipping ${year} (not found)`);
     continue;

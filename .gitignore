@@ -16,5 +16,5 @@ node_modules/
 *.sln
 *.sw?
 
-# Generated REST API (rebuilt from kemenag/ on deploy — see scripts/build-api.js)
-kemenag/api/
+# Generated REST API (rebuilt from schedule/ on deploy — see scripts/build-api.js)
+schedule/api/

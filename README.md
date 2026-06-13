@@ -37,7 +37,7 @@ Website untuk cek jadwal sholat berdasarkan lokasi GPS. Gratis, tanpa iklan.
 
 Jadwal sholat tersedia sebagai REST API statis (JSON), tanpa server — bisa diakses langsung dari hosting GitHub Pages. Setiap kota/kabupaten punya **kode 4 digit** (`PPCC`: 2 digit provinsi + 2 digit kota) yang stabil dan tidak berubah antar build.
 
-Base URL: `https://sholatku.com/kemenag/api/v1`
+Base URL: `https://sholatku.com/schedule/api/v1`
 
 | Endpoint | Keterangan |
 |---|---|
@@ -49,10 +49,10 @@ Base URL: `https://sholatku.com/kemenag/api/v1`
 
 ```bash
 # 1. Cari kode kota (mis. Kota Jakarta -> 0602)
-curl https://sholatku.com/kemenag/api/v1/cities.json | jq '.[] | select(.kota | test("Jakarta"))'
+curl https://sholatku.com/schedule/api/v1/cities.json | jq '.[] | select(.kota | test("Jakarta"))'
 
 # 2. Ambil jadwal setahun
-curl https://sholatku.com/kemenag/api/v1/jadwal/0602/2026.json
+curl https://sholatku.com/schedule/api/v1/jadwal/0602/2026.json
 ```
 
 Contoh respons `jadwal/0602/2026.json`:
@@ -120,7 +120,7 @@ Kode kota berformat `PPCC` — `PP` provinsi, `CC` urutan kota dalam provinsi. D
 | `37` | Sumatera Selatan | 17 |
 | `38` | Sumatera Utara | 33 |
 
-API digenerate dari data di folder `kemenag/` oleh `scripts/build-api.js` (`bun run build:api`) — dijalankan otomatis saat deploy.
+API digenerate dari data di folder `schedule/` oleh `scripts/build-api.js` (`bun run build:api`) — dijalankan otomatis saat deploy.
 
 ## Tech Stack
 

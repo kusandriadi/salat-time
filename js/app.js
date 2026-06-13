@@ -577,7 +577,7 @@
     }
 
     async function matchCityToCSV(address) {
-        const response = await fetch('kemenag/index.json');
+        const response = await fetch('schedule/index.json');
         if (!response.ok) throw new Error('Gagal memuat index kota');
         const index = await response.json();
 
@@ -648,7 +648,7 @@
         const month = String(now.getMonth() + 1).padStart(2, '0');
 
         const jsonFile = matchedCity.file.replace('.csv', '.json');
-        const url = `kemenag/${year}/json/${jsonFile}`;
+        const url = `schedule/${year}/json/${jsonFile}`;
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Data jadwal tahun ${year} tidak tersedia.`);
@@ -735,7 +735,7 @@
 
     async function getCityIndex() {
         if (cityIndex) return cityIndex;
-        const response = await fetch('kemenag/index.json');
+        const response = await fetch('schedule/index.json');
         if (!response.ok) throw new Error('Gagal memuat daftar kota');
         cityIndex = await response.json();
         return cityIndex;

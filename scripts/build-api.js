@@ -1,24 +1,24 @@
-// Build a static REST API from the existing Kemenag data in /kemenag.
+// Build a static REST API from the existing Kemenag data in /schedule.
 //
 // 1. Assigns each kota/kabupaten a stable 4-digit `code` (PPCC: province + city),
-//    persisted into kemenag/index.json so codes never change across rebuilds.
+//    persisted into schedule/index.json so codes never change across rebuilds.
 // 2. Emits static JSON endpoints (served as-is by GitHub Pages — no server needed):
-//      GET kemenag/api/v1/cities.json              -> daftar semua kota + kode
-//      GET kemenag/api/v1/jadwal/{code}/{year}.json -> jadwal 1 tahun untuk 1 kota
-//      GET kemenag/api/v1/index.json               -> metadata / daftar endpoint
+//      GET schedule/api/v1/cities.json              -> daftar semua kota + kode
+//      GET schedule/api/v1/jadwal/{code}/{year}.json -> jadwal 1 tahun untuk 1 kota
+//      GET schedule/api/v1/index.json               -> metadata / daftar endpoint
 //
 // No network calls — everything is derived from the CSV-built JSON already in repo.
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 
-const KEMENAG_DIR = join(import.meta.dir, "..", "kemenag");
-const INDEX_PATH = join(KEMENAG_DIR, "index.json");
-const API_DIR = join(KEMENAG_DIR, "api", "v1");
+const SCHEDULE_DIR = join(import.meta.dir, "..", "schedule");
+const INDEX_PATH = join(SCHEDULE_DIR, "index.json");
+const API_DIR = join(SCHEDULE_DIR, "api", "v1");
 
 // Any 4-digit year dir that has a built /json folder (auto-detected, sorted).
-const YEARS = readdirSync(KEMENAG_DIR)
-  .filter((d) => /^\d{4}$/.test(d) && existsSync(join(KEMENAG_DIR, d, "json")))
+const YEARS = readdirSync(SCHEDULE_DIR)
+  .filter((d) => /^\d{4}$/.test(d) && existsSync(join(SCHEDULE_DIR, d, "json")))
   .sort();
 
 // Order of times in the per-day arrays produced by build-json.js.
@@ -43,7 +43,7 @@ const pad2 = (n) => String(n).padStart(2, "0");
 // ---------------------------------------------------------------------------
 const cityFile = {}; // cityName -> "kemenag_xxx.csv"
 for (const year of YEARS) {
-  const jsonDir = join(KEMENAG_DIR, year, "json");
+  const jsonDir = join(SCHEDULE_DIR, year, "json");
   if (!existsSync(jsonDir)) continue;
   for (const jsonName of readdirSync(jsonDir).filter((f) => f.endsWith(".json"))) {
     const csvName = jsonName.replace(/\.json$/, ".csv");
@@ -141,7 +141,7 @@ writeFileSync(join(API_DIR, "cities.json"), JSON.stringify(cities));
 // Per-kode per-tahun jadwal files.
 let fileCount = 0;
 for (const year of YEARS) {
-  const jsonDir = join(KEMENAG_DIR, year, "json");
+  const jsonDir = join(SCHEDULE_DIR, year, "json");
   if (!existsSync(jsonDir)) continue;
   for (const jsonName of readdirSync(jsonDir).filter((f) => f.endsWith(".json"))) {
     const data = JSON.parse(readFileSync(join(jsonDir, jsonName), "utf-8"));
@@ -184,8 +184,8 @@ writeFileSync(
       jumlah_kota: cities.length,
       waktu: FIELDS,
       endpoints: {
-        cities: "kemenag/api/v1/cities.json",
-        jadwal: "kemenag/api/v1/jadwal/{code}/{year}.json",
+        cities: "schedule/api/v1/cities.json",
+        jadwal: "schedule/api/v1/jadwal/{code}/{year}.json",
       },
     },
     null,
