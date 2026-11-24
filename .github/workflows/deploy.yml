@@ -4,14 +4,19 @@ on:
   push:
     branches:
       - main
+  # Bisa dijalankan manual dari tab Actions kalau deploy perlu diulang
+  workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+# Jangan jalankan dua deploy bersamaan; deploy terbaru yang menang
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -51,6 +56,20 @@ jobs:
         with:
           path: '_site'
 
+  # Job terpisah (pola resmi GitHub Pages). Deploy di job yang sama dengan upload
+  # beberapa kali gagal "No artifacts named github-pages were found" padahal
+  # artifact-nya ada.
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
