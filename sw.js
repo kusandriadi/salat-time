@@ -1,4 +1,5 @@
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
+const NETWORK_TIMEOUT_MS = 4000;
 const STATIC_CACHE = `sholatku-static-${CACHE_VERSION}`;
 const API_CACHE = `sholatku-api-${CACHE_VERSION}`;
 
@@ -55,7 +56,17 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets → cache-first, fall back to network
+  // HTML / JS / CSS (same-origin) → network-first supaya update langsung sampai ke user,
+  // fallback ke cache kalau offline atau jaringan lambat
+  const isAppCode =
+    url.origin === self.location.origin &&
+    (request.mode === 'navigate' || /\.(html|js|css)$/.test(url.pathname));
+  if (isAppCode) {
+    event.respondWith(networkFirst(request, STATIC_CACHE, NETWORK_TIMEOUT_MS));
+    return;
+  }
+
+  // Static assets lain (ikon, data jadwal JSON) → cache-first, fall back to network
   event.respondWith(cacheFirst(request, STATIC_CACHE));
 });
 
@@ -84,9 +95,16 @@ async function cacheFirst(request, cacheName) {
   }
 }
 
-async function networkFirst(request, cacheName) {
+function fetchWithTimeout(request, timeoutMs) {
+  if (!timeoutMs) return fetch(request);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(request, { signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
+async function networkFirst(request, cacheName, timeoutMs) {
   try {
-    const response = await fetch(request);
+    const response = await fetchWithTimeout(request, timeoutMs);
     if (response.ok) {
       const cache = await caches.open(cacheName);
       cache.put(request, response.clone());
@@ -95,6 +113,10 @@ async function networkFirst(request, cacheName) {
   } catch {
     const cached = await caches.match(request);
     if (cached) return cached;
+    if (request.mode === 'navigate') {
+      const shell = await caches.match('/index.html');
+      if (shell) return shell;
+    }
     return new Response(JSON.stringify({ error: 'Offline' }), {
       status: 503,
       headers: { 'Content-Type': 'application/json' },

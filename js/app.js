@@ -6,6 +6,13 @@
     const KAABA_LAT = 21.422487;
     const KAABA_LNG = 39.826206;
     const WEBSITE_URL = 'https://sholatku.com/'; // Ganti dengan URL website Anda
+    const GEOLOCATION_HARD_TIMEOUT_MS = 8000;
+    const LAST_LOCATION_KEY = 'lastLocation';
+    const KEMENAG_SOURCE = 'Data waktu sholat bersumber dari <strong>Kementerian Agama RI</strong>';
+
+    const ALADHAN_SOURCE = 'Waktu sholat dihitung dengan metode <strong>Kementerian Agama RI</strong> via Aladhan API';
+    // Dhuha versi Kemenag jatuh ±26–30 menit setelah terbit; Aladhan tidak menyediakan Dhuha
+    const DHUHA_OFFSET_MINUTES = 28;
 
     const PRAYER_NAMES = {
         imsak: 'Imsak',
@@ -65,7 +72,9 @@
         btnCloseShare: document.getElementById('btn-close-share'),
         citySearch: document.getElementById('city-search'),
         cityInput: document.getElementById('city-input'),
-        cityResults: document.getElementById('city-results')
+        cityResults: document.getElementById('city-results'),
+        creditsText: document.getElementById('credits-text'),
+        btnLocate: document.getElementById('btn-locate')
     };
 
     let prayerTimesData = null;
@@ -529,24 +538,78 @@
     // GEOLOCATION & API
     // ========================================
 
-    async function getLocation() {
+    function getCachedLocation() {
+        try {
+            const cached = JSON.parse(localStorage.getItem(LAST_LOCATION_KEY));
+            if (cached && typeof cached.lat === 'number' && typeof cached.lng === 'number') {
+                return cached;
+            }
+        } catch (_error) {
+            // abaikan cache yang rusak
+        }
+        return null;
+    }
+
+    function saveCachedLocation(location) {
+        try {
+            localStorage.setItem(LAST_LOCATION_KEY, JSON.stringify(location));
+        } catch (_error) {
+            // storage penuh / diblokir, tidak masalah
+        }
+    }
+
+    function requestPosition(fresh = false) {
         return new Promise((resolve, reject) => {
             if (!navigator.geolocation) {
                 reject(new Error('Geolocation tidak didukung browser'));
                 return;
             }
 
+            let settled = false;
+            const finish = (fn, value) => {
+                if (settled) return;
+                settled = true;
+                clearTimeout(hardTimeout);
+                fn(value);
+            };
+
+            // Opsi `timeout` milik Geolocation API tidak berlaku selama izin lokasi
+            // belum dijawab, dan di beberapa browser (terutama iOS saat refresh)
+            // callback tidak pernah dipanggil sama sekali. Tanpa batas waktu ini,
+            // loading bisa berputar selamanya.
+            const hardTimeout = setTimeout(
+                () => finish(reject, new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif dan izin lokasi diberikan.')),
+                GEOLOCATION_HARD_TIMEOUT_MS
+            );
+
             navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    resolve({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    });
-                },
-                () => reject(new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif.')),
-                { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
+                (position) => finish(resolve, {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }),
+                () => finish(reject, new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif dan izin lokasi diberikan.')),
+                { enableHighAccuracy: false, timeout: 5000, maximumAge: fresh ? 0 : 600000 }
             );
         });
+    }
+
+    async function getLocation(fresh = false) {
+        try {
+            const location = await requestPosition(fresh);
+            saveCachedLocation(location);
+            return location;
+        } catch (error) {
+            // Fallback ke lokasi terakhir yang berhasil didapat
+            const cached = getCachedLocation();
+            if (cached) return cached;
+            throw error;
+        }
+    }
+
+    function setSourceCredit(html) {
+        if (elements.creditsText) {
+            elements.creditsText.innerHTML = html;
+        }
     }
 
     async function getNominatimAddress(lat, lng) {
@@ -559,13 +622,12 @@
                 { signal: controller.signal }
             );
 
-            clearTimeout(timeout);
-
             if (!response.ok) {
                 throw new Error('Failed');
             }
 
             const data = await response.json();
+            clearTimeout(timeout);
             return data.address || {};
         } catch (_error) {
             return {};
@@ -680,6 +742,12 @@
         throw new Error(`Jadwal shalat untuk ${matchedCity.city} tanggal ${todayStr} tidak ditemukan.`);
     }
 
+    function addMinutes(timeStr, minutes) {
+        const [h, m] = timeStr.split(':').map(Number);
+        const total = (h * 60 + m + minutes + 1440) % 1440;
+        return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
+    }
+
     async function fetchPrayerTimes(lat, lng) {
         const date = new Date();
         const day = String(date.getDate()).padStart(2, '0');
@@ -693,19 +761,24 @@
             const timeout = setTimeout(() => controller.abort(), 10000);
 
             const response = await fetch(url, { signal: controller.signal });
-            clearTimeout(timeout);
 
             if (!response.ok) {
+                clearTimeout(timeout);
                 throw new Error('Layanan jadwal sholat sedang tidak tersedia. Silakan coba lagi nanti.');
             }
 
             const data = await response.json();
+            clearTimeout(timeout);
             const timings = data.data.timings;
+
+            setSourceCredit(ALADHAN_SOURCE);
+            const syuruq = timings.Sunrise.substring(0, 5);
 
             return {
                 imsak: timings.Imsak.substring(0, 5),
                 fajr: timings.Fajr.substring(0, 5),
-                syuruq: timings.Sunrise.substring(0, 5),
+                syuruq: syuruq,
+                dhuha: addMinutes(syuruq, DHUHA_OFFSET_MINUTES),
                 dhuhr: timings.Dhuhr.substring(0, 5),
                 asr: timings.Asr.substring(0, 5),
                 maghrib: timings.Maghrib.substring(0, 5),
@@ -815,6 +888,7 @@
         try {
             const matchedCity = { city: cityName, file: info.file };
             const times = await fetchPrayerTimesFromJSON(matchedCity);
+            setSourceCredit(KEMENAG_SOURCE);
             displayPrayerTimes(times);
         } catch (error) {
             showError(error.message);
@@ -823,9 +897,26 @@
         hideElement(elements.loading);
     }
 
-    async function loadPrayerTimesByGPS() {
+    async function useCurrentLocation() {
+        // Hapus kota pilihan manual supaya buka berikutnya juga ikut GPS
+        localStorage.removeItem('selectedCity');
+
+        elements.cityResults.classList.add('hidden');
+        elements.cityInput.value = '';
+        elements.cityInput.blur();
+        elements.btnLocate.disabled = true;
+
+        hideElement(elements.error);
+        hideElement(elements.prayerTimes);
+        showElement(elements.loading);
+
+        await loadPrayerTimesByGPS(true);
+        elements.btnLocate.disabled = false;
+    }
+
+    async function loadPrayerTimesByGPS(fresh = false) {
         try {
-            const location = await getLocation();
+            const location = await getLocation(fresh);
             userLocation = location;
 
             const address = await getNominatimAddress(location.lat, location.lng);
@@ -839,6 +930,7 @@
                 }
                 elements.cityInput.value = matchedCity.city;
                 times = await fetchPrayerTimesFromJSON(matchedCity);
+                setSourceCredit(KEMENAG_SOURCE);
             } else {
                 elements.cityInput.value = getDisplayName(address);
                 times = await fetchPrayerTimes(location.lat, location.lng);
@@ -864,6 +956,7 @@
     elements.btnCloseShare.addEventListener('click', closeShareModal);
 
     elements.btnQibla.addEventListener('click', toggleQiblaCard);
+    elements.btnLocate.addEventListener('click', useCurrentLocation);
     elements.btnCloseQibla.addEventListener('click', () => {
         hideElement(elements.qiblaCard);
         stopCompass();
