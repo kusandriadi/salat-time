@@ -6,7 +6,10 @@
     const KAABA_LAT = 21.422487;
     const KAABA_LNG = 39.826206;
     const WEBSITE_URL = 'https://sholatku.com/'; // Ganti dengan URL website Anda
-    const GEOLOCATION_HARD_TIMEOUT_MS = 8000;
+    const GEOLOCATION_TIMEOUT_MS = 10000;
+    // Batas keras: lebih lama dari timeout Geolocation API supaya ada waktu menjawab
+    // prompt izin lokasi (Chrome iOS menampilkannya di setiap buka halaman).
+    const GEOLOCATION_HARD_TIMEOUT_MS = 15000;
     const LAST_LOCATION_KEY = 'lastLocation';
     const KEMENAG_SOURCE = 'Data waktu sholat bersumber dari <strong>Kementerian Agama RI</strong>';
 
@@ -74,7 +77,8 @@
         cityInput: document.getElementById('city-input'),
         cityResults: document.getElementById('city-results'),
         creditsText: document.getElementById('credits-text'),
-        btnLocate: document.getElementById('btn-locate')
+        btnLocate: document.getElementById('btn-locate'),
+        btnRetry: document.getElementById('btn-retry')
     };
 
     let prayerTimesData = null;
@@ -412,7 +416,7 @@
         const encodedMessage = encodeURIComponent(message);
         const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
 
-        window.open(whatsappUrl, '_blank');
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
         hideElement(elements.shareModal);
     }
 
@@ -558,10 +562,27 @@
         }
     }
 
-    function requestPosition(fresh = false) {
+    function geolocationErrorMessage(code) {
+        switch (code) {
+            case 1: // PERMISSION_DENIED
+                return 'Izin lokasi ditolak. Aktifkan izin lokasi untuk browser ini ' +
+                    '(iPhone: Pengaturan › Privasi & Keamanan › Layanan Lokasi), atau cari kota secara manual.';
+            case 2: // POSITION_UNAVAILABLE
+                return 'Lokasi tidak tersedia. Pastikan GPS aktif, atau cari kota secara manual.';
+            default: // TIMEOUT / tidak ada respons
+                return 'Lokasi belum didapat karena terlalu lama. Tekan Coba Lagi, atau cari kota secara manual.';
+        }
+    }
+
+    /**
+     * Minta posisi GPS dengan batas waktu keras.
+     * Kalau posisi baru datang SETELAH batas waktu (mis. prompt izin dijawab
+     * telat), `onLatePosition` dipanggil supaya jadwal tetap bisa diperbarui.
+     */
+    function requestPosition(fresh = false, onLatePosition = null) {
         return new Promise((resolve, reject) => {
             if (!navigator.geolocation) {
-                reject(new Error('Geolocation tidak didukung browser'));
+                reject(new Error('Geolocation tidak didukung browser ini. Silakan cari kota secara manual.'));
                 return;
             }
 
@@ -578,24 +599,36 @@
             // callback tidak pernah dipanggil sama sekali. Tanpa batas waktu ini,
             // loading bisa berputar selamanya.
             const hardTimeout = setTimeout(
-                () => finish(reject, new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif dan izin lokasi diberikan.')),
+                () => finish(reject, new Error(geolocationErrorMessage(3))),
                 GEOLOCATION_HARD_TIMEOUT_MS
             );
 
             navigator.geolocation.getCurrentPosition(
-                (position) => finish(resolve, {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                }),
-                () => finish(reject, new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif dan izin lokasi diberikan.')),
-                { enableHighAccuracy: false, timeout: 5000, maximumAge: fresh ? 0 : 600000 }
+                (position) => {
+                    const location = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    if (settled) {
+                        saveCachedLocation(location);
+                        if (onLatePosition) onLatePosition(location);
+                        return;
+                    }
+                    finish(resolve, location);
+                },
+                (error) => finish(reject, new Error(geolocationErrorMessage(error && error.code))),
+                {
+                    enableHighAccuracy: false,
+                    timeout: GEOLOCATION_TIMEOUT_MS,
+                    maximumAge: fresh ? 60000 : 600000
+                }
             );
         });
     }
 
-    async function getLocation(fresh = false) {
+    async function getLocation(fresh = false, onLatePosition = null) {
         try {
-            const location = await requestPosition(fresh);
+            const location = await requestPosition(fresh, onLatePosition);
             saveCachedLocation(location);
             return location;
         } catch (error) {
@@ -788,6 +821,10 @@
             if (error.name === 'AbortError') {
                 throw new Error('Koneksi timeout. Periksa koneksi internet Anda.');
             }
+            if (error instanceof TypeError) {
+                // "Failed to fetch" (Chrome) / "Load failed" (Safari): jaringan putus atau diblokir
+                throw new Error('Gagal terhubung ke layanan jadwal sholat. Periksa koneksi internet Anda.');
+            }
 
             throw new Error(error.message || 'Layanan jadwal sholat sedang tidak tersedia. Silakan coba lagi nanti.');
         }
@@ -915,8 +952,25 @@
     }
 
     async function loadPrayerTimesByGPS(fresh = false) {
+        // Posisi yang datang telat (setelah error/fallback tampil) tetap dipakai,
+        // kecuali user sudah memilih kota secara manual.
+        const onLatePosition = (location) => {
+            if (localStorage.getItem('selectedCity')) return;
+            hideElement(elements.error);
+            renderForLocation(location);
+        };
+
         try {
-            const location = await getLocation(fresh);
+            const location = await getLocation(fresh, onLatePosition);
+            await renderForLocation(location);
+        } catch (error) {
+            hideElement(elements.loading);
+            showError(error.message);
+        }
+    }
+
+    async function renderForLocation(location) {
+        try {
             userLocation = location;
 
             const address = await getNominatimAddress(location.lat, location.lng);
@@ -936,11 +990,25 @@
                 times = await fetchPrayerTimes(location.lat, location.lng);
             }
 
+            hideElement(elements.error);
             displayPrayerTimes(times);
             hideElement(elements.loading);
         } catch (error) {
             hideElement(elements.loading);
             showError(error.message);
+        }
+    }
+
+    async function retry() {
+        hideElement(elements.error);
+        hideElement(elements.prayerTimes);
+        showElement(elements.loading);
+
+        const savedCity = localStorage.getItem('selectedCity');
+        if (savedCity) {
+            await selectCity(savedCity);
+        } else {
+            await loadPrayerTimesByGPS(true);
         }
     }
 
@@ -957,6 +1025,7 @@
 
     elements.btnQibla.addEventListener('click', toggleQiblaCard);
     elements.btnLocate.addEventListener('click', useCurrentLocation);
+    elements.btnRetry.addEventListener('click', retry);
     elements.btnCloseQibla.addEventListener('click', () => {
         hideElement(elements.qiblaCard);
         stopCompass();
@@ -990,6 +1059,13 @@
         }
 
         await loadPrayerTimesByGPS();
+    }
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .catch(() => {}); // abaikan kalau registrasi gagal
+        });
     }
 
     init();

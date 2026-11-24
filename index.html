@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://nominatim.openstreetmap.org https://api.aladhan.com; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
@@ -238,7 +240,7 @@
         <!-- Error -->
         <div id="error" class="error hidden">
             <div id="error-text" class="error-text"></div>
-            <button onclick="location.reload()" class="btn-retry">Coba Lagi</button>
+            <button type="button" id="btn-retry" class="btn-retry">Coba Lagi</button>
         </div>
 
         <!-- Prayer Times -->
@@ -301,13 +303,5 @@
     </div>
 
     <script src="js/app.js"></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .catch(() => {}); // silently fail if SW registration fails
-        });
-      }
-    </script>
 </body>
 </html>

@@ -22,16 +22,10 @@ Website untuk cek jadwal sholat berdasarkan lokasi GPS. Gratis, tanpa iklan.
    cd salat-time
    ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+2. **Buka aplikasi**
+   - Gunakan local server (misal: `python3 -m http.server` atau Live Server di VS Code)
 
-3. **Buka aplikasi**
-   - Langsung buka `index.html` di browser, atau
-   - Gunakan local server (misal: Live Server di VS Code)
-
-**Catatan**: Dependencies hanya untuk development tools. Aplikasi bisa langsung dibuka di browser tanpa build process.
+**Catatan**: Tidak ada dependency. Script build (`bun run build`) hanya untuk generate JSON/REST API dari CSV.
 
 ## REST API
 
