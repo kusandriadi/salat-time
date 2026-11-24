@@ -16,13 +16,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies
-        run: bun install
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
 
       - name: Build JSON from CSV
         run: bun run scripts/build-json.js
@@ -34,7 +31,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html robots.txt manifest.json sw.js _site/
-          cp -r css js icons node_modules _site/
+          cp -r css js icons _site/
           mkdir -p _site/schedule
           cp schedule/index.json _site/schedule/
           cp -r schedule/api _site/schedule/
@@ -47,13 +44,13 @@ jobs:
           done
 
       - name: Setup Pages
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
