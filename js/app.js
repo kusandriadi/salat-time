@@ -73,7 +73,8 @@
         citySearch: document.getElementById('city-search'),
         cityInput: document.getElementById('city-input'),
         cityResults: document.getElementById('city-results'),
-        creditsText: document.getElementById('credits-text')
+        creditsText: document.getElementById('credits-text'),
+        btnLocate: document.getElementById('btn-locate')
     };
 
     let prayerTimesData = null;
@@ -557,7 +558,7 @@
         }
     }
 
-    function requestPosition() {
+    function requestPosition(fresh = false) {
         return new Promise((resolve, reject) => {
             if (!navigator.geolocation) {
                 reject(new Error('Geolocation tidak didukung browser'));
@@ -587,14 +588,14 @@
                     lng: position.coords.longitude
                 }),
                 () => finish(reject, new Error('Gagal mendapatkan lokasi. Pastikan GPS aktif dan izin lokasi diberikan.')),
-                { enableHighAccuracy: false, timeout: 5000, maximumAge: 600000 }
+                { enableHighAccuracy: false, timeout: 5000, maximumAge: fresh ? 0 : 600000 }
             );
         });
     }
 
-    async function getLocation() {
+    async function getLocation(fresh = false) {
         try {
-            const location = await requestPosition();
+            const location = await requestPosition(fresh);
             saveCachedLocation(location);
             return location;
         } catch (error) {
@@ -896,9 +897,26 @@
         hideElement(elements.loading);
     }
 
-    async function loadPrayerTimesByGPS() {
+    async function useCurrentLocation() {
+        // Hapus kota pilihan manual supaya buka berikutnya juga ikut GPS
+        localStorage.removeItem('selectedCity');
+
+        elements.cityResults.classList.add('hidden');
+        elements.cityInput.value = '';
+        elements.cityInput.blur();
+        elements.btnLocate.disabled = true;
+
+        hideElement(elements.error);
+        hideElement(elements.prayerTimes);
+        showElement(elements.loading);
+
+        await loadPrayerTimesByGPS(true);
+        elements.btnLocate.disabled = false;
+    }
+
+    async function loadPrayerTimesByGPS(fresh = false) {
         try {
-            const location = await getLocation();
+            const location = await getLocation(fresh);
             userLocation = location;
 
             const address = await getNominatimAddress(location.lat, location.lng);
@@ -938,6 +956,7 @@
     elements.btnCloseShare.addEventListener('click', closeShareModal);
 
     elements.btnQibla.addEventListener('click', toggleQiblaCard);
+    elements.btnLocate.addEventListener('click', useCurrentLocation);
     elements.btnCloseQibla.addEventListener('click', () => {
         hideElement(elements.qiblaCard);
         stopCompass();
